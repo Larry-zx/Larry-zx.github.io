@@ -7,7 +7,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
 <meta property="article:published_time" content="2022-05-03T18:56:42.000Z">
-<meta property="article:modified_time" content="2022-05-03T18:58:14.895Z">
+<meta property="article:modified_time" content="2022-05-03T19:07:43.640Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/05/04/%E8%A7%A3%E8%AF%BB/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
@@ -52,7 +52,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2022-05-04 02:58:14'
+  postUpdate: '2022-05-04 03:07:43'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -142,7 +142,7 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Perceptual Losses for Real-Time Style Transfer and Super-Resolution</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-05-03T18:56:42.000Z" title="Created 2022-05-04 02:56:42">2022-05-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-05-03T18:58:14.895Z" title="Updated 2022-05-04 02:58:14">2022-05-04</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Perceptual Losses for Real-Time Style Transfer and Super-Resolution"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="网络模型">1.网络模型</h2>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Perceptual Losses for Real-Time Style Transfer and Super-Resolution</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-05-03T18:56:42.000Z" title="Created 2022-05-04 02:56:42">2022-05-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-05-03T19:07:43.640Z" title="Updated 2022-05-04 03:07:43">2022-05-04</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Perceptual Losses for Real-Time Style Transfer and Super-Resolution"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="网络模型">1.网络模型</h2>
 <p><img
 src="https://pic4.zhimg.com/v2-8e9936fdcfd4e8371720b9834f8f97d7_r.jpg" /></p>
 <h3 id="组成部分">1.1 组成部分</h3>
@@ -193,18 +193,17 @@ class="math inline">\(y_s\)</span>越来越接近</p>
 <h3 id="特征内容损失feature-reconstruction-loss">2.1特征内容损失(Feature
 Reconstruction Loss)</h3>
 <p><span class="math display">\[
-\ell_{feat}^{\empty , j}(\hat{y},y) = \frac{1}{C_jH_jW_j}\Vert
-\empty_j(\hat{y})-\empty_j(y)\Vert_2
+\ell_{feat}^{\phi , j}(\hat{y},y) = \frac{1}{C_jH_jW_j}\Vert
+\phi_j(\hat{y})-\phi_j(y)\Vert_2
 \]</span></p>
 <ul>
 <li>j 表示VGG-16中间层代号</li>
 <li>y表示特征目标图像</li>
 <li><span class="math inline">\(\hat{y}\)</span>表示image transform net
 输出的图像</li>
-<li><span class="math inline">\(\empty_{j}(y)\)</span>
+<li><span class="math inline">\(\phi_{j}(y)\)</span>
 表示图像y在VGG-16中间层j时的输出</li>
-<li><span class="math inline">\(\empty_{j}(\hat{y})\)</span>
-表示图像<span
+<li><span class="math inline">\(\phi_{j}(\hat{y})\)</span> 表示图像<span
 class="math inline">\(\hat{y}\)</span>在VGG-16中间层j时的输出</li>
 <li><span
 class="math inline">\(C_jH_jW_j\)</span>分别表示在VGG-16中间层j时的通道数、高度、宽度</li>
@@ -218,8 +217,8 @@ class="math inline">\(C_jH_jW_j\)</span>分别表示在VGG-16中间层j时的通
 Reconstruction Loss</strong>)</h3>
 <ul>
 <li><strong>Gram特征矩阵中的元素</strong> <span class="math display">\[
-G_{j}^{\empty}(x)_{c,c^{&#39;}} = \frac{1}{C_jH_jW_j} \sum_{h=1}^{H_j}
-\sum_{w=1}^{W_j}\empty_j(x)_{h,w,c}\empty_{j}(x)_{h,w,c^{&#39;}}
+G_{j}^{\phi}(x)_{c,c^{&#39;}} = \frac{1}{C_jH_jW_j} \sum_{h=1}^{H_j}
+\sum_{w=1}^{W_j}\phi_j(x)_{h,w,c}\phi_{j}(x)_{h,w,c^{&#39;}}
 \]</span></li>
 </ul>
 <blockquote>
@@ -239,8 +238,8 @@ class="math inline">\(C_j,C_j\)</span>]</p>
 <li><strong>中间层j的风格损失</strong></li>
 </ul>
 <p><span class="math display">\[
-\ell_{style}^{\empty,j}(\hat{y},y) =\Vert G_j^{\empty}(\hat{y}) -
-G_j^{\empty}(y)\Vert_{F}^{2}
+\ell_{style}^{\phi,j}(\hat{y},y) =\Vert G_j^{\phi}(\hat{y}) -
+G_j^{\phi}(y)\Vert_{F}^{2}
 \]</span></p>
 <blockquote>
 <p>计算图像<span class="math inline">\(y\)</span>和图像<span
@@ -253,9 +252,11 @@ class="math inline">\(\hat{y}\)</span>两者VGG-16中间层j中gram矩阵距离�
 class="math display">\[
 \ell_{pixel}({\hat{y},y}) = \frac{1}{CHW}\Vert \hat{y}-y\Vert_2^2
 \]</span></p></li>
-<li><p><strong>全变差正则化</strong></p>
-<pre><code>  为使得输出图像比较平滑，遵循了前人在特征反演上的研究，在超分辨率重建上使用了全变差正则化$\ell_&#123;TV&#125;(\hat&#123;y&#125;)$</code></pre></li>
+<li><p><strong>全变差正则化</strong></p></li>
 </ul>
+<p>​
+为使得输出图像比较平滑，遵循了前人在特征反演上的研究，在超分辨率重建上使用了全变差正则化<span
+class="math inline">\(\ell_{TV}(\hat{y})\)</span></p>
 <h2 id="image-transform-net细节">3.Image Transform Net细节</h2>
 <h3 id="风格迁移">3.1 风格迁移</h3>
 <table>
