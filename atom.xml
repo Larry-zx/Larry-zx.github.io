@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2022-05-03T16:39:27.162Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/2022/05/04/%E9%A6%96%E9%A1%B5/"/>
+    <id>http://example.com/2022/05/04/%E9%A6%96%E9%A1%B5/</id>
+    <published>2022-05-03T16:39:27.162Z</published>
+    <updated>2022-05-03T16:39:27.162Z</updated>
+    
+    <content type="html"><![CDATA[<!-- 标题 --><h3 align="center">  Welcome to Xin Zhong's profile!  <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="28"></h3><!--动画文字  --><!-- Typing SVG by DenverCoder1 - https://github.com/DenverCoder1/readme-typing-svg --><p align="center">  <a href="https://github.com/DenverCoder1/readme-typing-svg"><img src="https://readme-typing-svg.herokuapp.com?size=24&center=true&color=FF4679&background=AAFF5000&width=500&height=40&lines=Hello%2C+nice+to+meet+here%F0%9F%98%81;Welcome+your+visit+%F0%9F%91%BE;Hope+to+get+your+Stars+%F0%9F%8C%9F"></a></p><!-- 社交平台 --><!-- Social icons section --><p align="center"><!--  youtube  -->  <a href="https://youtube.com/channel/UCzDXYobI-mUP5WgvA37er6A"><img width="32px" alt="Youtube" title="Youtube" src="https://www.youtube.com/s/desktop/5aa0c1f3/img/favicon_48x48.png"/></a>  &#8287;&#8287;&#8287;&#8287;&#8287;<!--   twitter -->  <a href="https://mobile.twitter.com/Larry37722397"><img width="32px" alt="Twitter" title="Twitter" src="https://user-images.githubusercontent.com/75230173/166133135-cdd925ee-eeb3-414a-b6ce-c15cbd29d2b5.jpeg"/></a>  &#8287;&#8287;&#8287;&#8287;&#8287;<!--   kaggle -->  <a href="https://www.kaggle.com/larryzxai" alt="Dev Pro Tips Discussion & Support Server"><img width="32px" src="https://user-images.githubusercontent.com/75230173/166133300-9c5d4b7e-ae3f-4ed5-81f3-a8c58a0862d0.jpeg"/></a>  &#8287;&#8287;&#8287;&#8287;&#8287;<!--  dev  -->  <a href="https://dev.to/larryzx"><img width="32px" alt="Dev.to" title="DenverCoder1 Dev.to" src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"></a>  &#8287;&#8287;&#8287;&#8287;&#8287;<!--  ko-fi -->  <a href="https://ko-fi.com/larry59868"><img width="32px" alt="Ko-fi" title="Buy me a coffee" src="https://i.imgur.com/PpLeD3K.png"/></a>   &#8287;&#8287;&#8287;&#8287;&#8287;  <a href="https://www.zhihu.com/people/larry-19-22-31"><img width="32px" alt="zhihu" src="https://static.zhihu.com/heifetz/assets/apple-touch-icon-60.8f6c52aa.png"></a></p><br/>  <p align="center">  <a href="https://github.com/Larry-zx" target="_blank" rel="noopener noreferrer">    <img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="built with love badge" /> </a>  <a href="https://github.com/Larry-zx" target="_blank" rel="noopener noreferrer">    <img src="https://forthebadge.com/images/badges/made-with-markdown.svg" alt="made with markdown badge" /> </a>  <a href="https://github.com/Larry-zx" target="_blank" rel="noopener noreferrer">    <img src="https://forthebadge.com/images/badges/open-source.svg" alt="open source badge" /> </a> <br /> <a  target="_blank" rel="noopener noreferrer">    <img src="https://forthebadge.com/images/badges/check-it-out.svg" alt="check it out badge" /> </a>  <a href="https://github.com/Larry-zx" target="_blank" rel="noopener noreferrer">    <img src="https://forthebadge.com/images/badges/built-by-developers.svg" alt="built by developers badge" /> </a></p><div align=center>  <a><img src ="https://github-readme-stats.vercel.app/api?username=Larry-zx&theme=tokyonight&show_icons=true)](https://github.com/anuraghazra/github-readme-stats"></a></div>    <div align=center>  <a><img src ="https://metrics.lecoq.io/Larry-zx?template=classic&base.community=0&base.repositories=0&base.metadata=0&config.timezone=Asia%2FShanghai"></a></div><h2 id="🛠️-My-favorite-tools"><a href="#🛠️-My-favorite-tools" class="headerlink" title="🛠️ My favorite tools"></a>🛠️ My favorite tools</h2><h3 id="👨‍💻-Programming-and-markup-languages"><a href="#👨‍💻-Programming-and-markup-languages" class="headerlink" title="👨‍💻 Programming and markup languages"></a>👨‍💻 Programming and markup languages</h3><p>    <a href="https://github.com/search?q=user%3ADenverCoder1+language%3Apython"><img alt="Python" src="https://img.shields.io/badge/Python-14354C.svg?logo=python&logoColor=white"></a>    <a href="https://github.com/search?q=user%3ADenverCoder1+language%3Ac"><img alt="C" src="https://custom-icon-badges.herokuapp.com/badge/C-03599C.svg?logo=c-in-hexagon&logoColor=white"></a>    <a href="https://github.com/search?q=user%3ADenverCoder1+language%3Acpp"><img alt="C++" src="https://custom-icon-badges.herokuapp.com/badge/C++-9C033A.svg?logo=cpp2&logoColor=white"></a>     <a href="https://github.com/search?q=user%3ADenverCoder1+language%3Ahtml"><img alt="HTML" src="https://img.shields.io/badge/HTML-E34F26.svg?logo=html5&logoColor=white"></a>    <a href="https://github.com/search?q=user%3ADenverCoder1+language%3Ajava"><img alt="Java" src="https://img.shields.io/badge/Java-007396.svg?logo=java&logoColor=white"></a>    <a href="https://github.com/search?q=user%3ADenverCoder1+language%3Atex"><img alt="LaTeX" src="https://img.shields.io/badge/LaTeX-008080.svg?logo=LaTeX&logoColor=white"></a>    <a href="https://github.com/search?q=user%3ADenverCoder1+language%3Amarkdown"><img alt="Markdown" src="https://img.shields.io/badge/Markdown-000000.svg?logo=markdown&logoColor=white"></a>    <a href="https://github.com/search?q=user%3ADenverCoder1+language%3Asql"><img alt="SQL" src="https://custom-icon-badges.herokuapp.com/badge/SQL-025E8C.svg?logo=database&logoColor=white"></a></p>       <h3 id="🧰-Frameworks-and-libraries"><a href="#🧰-Frameworks-and-libraries" class="headerlink" title="🧰 Frameworks and libraries"></a>🧰 Frameworks and libraries</h3><p>    <a href="#"><img alt="Pytorch" src="https://img.shields.io/badge/Pytorch-013278.svg?logo=Pytorch&logoColor=white"></a>    <a href="#"><img alt="Scipy" src="https://img.shields.io/badge/Scipy-238919.svg?logo=Scipy&logoColor=white"></a>    <a href="#"><img alt="Sklearn" src="https://img.shields.io/badge/Sklearn-675424.svg?logo=Scikit-learn&logoColor=white"></a>    <a href="#"><img alt="NumPy" src="https://img.shields.io/badge/Numpy-013243.svg?logo=numpy&logoColor=white"></a>    <a href="#"><img alt="Pandas" src="https://img.shields.io/badge/Pandas-150458.svg?logo=pandas&logoColor=white"></a>    <a href="#"><img alt="Selenium" src="https://img.shields.io/badge/Selenium-345423.svg?logo=Selenium&logoColor=white"></a>    <a href="#"><img alt="Opencv" src="https://img.shields.io/badge/Opencv-123456.svg?logo=opencv&logoColor=white"></a>    <a href="#"><img alt="Django" src="https://img.shields.io/badge/Django-086745.svg?logo=Django&logoColor=white"></a>    <a href="#"><img alt="Dlib" src="https://img.shields.io/badge/Dlib-aa9878.svg?logo=Dlib&logoColor=white"></a>    </p>    <h3 id="💻-Software-and-tools"><a href="#💻-Software-and-tools" class="headerlink" title="💻 Software and tools"></a>💻 Software and tools</h3><p>    <a href="#"><img alt="Git" src="https://img.shields.io/badge/Git-F05033.svg?logo=git&logoColor=white"></a>    <a href="#"><img alt="Jupyter" src="https://img.shields.io/badge/Jupyter-F37626.svg?logo=Jupyter&logoColor=white"></a>    <a href="#"><img alt="Stack Overflow" src="https://img.shields.io/badge/-Stack%20Overflow-FE7A16?logo=stack-overflow&logoColor=white"></a>    <a href="#"><img alt="Visual Studio Code" src="https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?logo=visual-studio-code&logoColor=white"></a>    <a href="#"><img alt="Github" src="https://img.shields.io/badge/github-102912.svg?logo=Github&logoColor=white"></a>    <a href="#"><img alt="Xcode" src="https://img.shields.io/badge/Xcode-008897.svg?logo=Xcode&logoColor=white"></a>    <a href="#"><img alt="Pycharm" src="https://img.shields.io/badge/Pycharm-dd8917.svg?logo=pycharm&logoColor=white"></a>   </p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;!-- 标题 --&gt;
+&lt;h3 align=&quot;center&quot;&gt;
+  Welcome to Xin Zhong&#39;s profile!
+  &lt;img src=&quot;https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif&quot; wi</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://example.com/2022/05/04/hello-world/"/>
+    <id>http://example.com/2022/05/04/hello-world/</id>
+    <published>2022-05-03T16:06:22.921Z</published>
+    <updated>2022-05-03T16:06:22.921Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
