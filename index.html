@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2022-05-04 02:11:43'
+  postUpdate: '2022-05-04 03:00:15'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,109 +138,150 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Hexo</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/04/%E9%A6%96%E9%A1%B5/" title="No title"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="No title"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/04/%E9%A6%96%E9%A1%B5/" title="No title">No title</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-05-03T16:39:27.162Z" title="Created 2022-05-04 00:39:27">2022-05-04</time></span></div><div class="content">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Hexo</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/04/MASA-SR/" title="MASA-SR翻译"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MASA-SR翻译"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/04/MASA-SR/" title="MASA-SR翻译">MASA-SR翻译</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-05-03T18:58:52.000Z" title="Created 2022-05-04 02:58:52">2022-05-04</time></span></div><div class="content">
+主要组成
 
-Welcome to Xin Zhong's profile!
+编码器 Encoder
+匹配与提取模块（MEM） Math &amp; Extraction Modules
+空间自适应模块（SAM） Spatial Adaptation Modules
 
+将Ref特征的分布映射到LR特征的分布
 
+双残差聚合模块（DRAM）Dual Residual Aggregation Modules
 
+进行有效的特征融合
 
 
+名词解释
 
 
+LR 低分辨率图像
+Ref↓ 表示 x4双三次下采样参考图
+Ref 参考图
 
 
+编码器
 
+与之前使用预先训练过的VGG作为自然提取器的方法不同
+这里的编码器与网络的其他部分一起从头开始训练的
+编码器含有三个构造块
 
+第二个和第三个 利用stride=2的方法将featue map大小折半
 
-      
+将Ref参考图传入编码器分别经过三个构造块得到三个不同比例的特征
 
-      
+生成\(F_{Ref}^s\) 其中s =
+1,2,4
 
-      
+LR图像和Ref↓ 图像只经管编码器的第一个构造块
 
-      
+生成\(F_{LR}\) 和 \(F_{Ref↓ }\)
 
-     
 
+Matching &amp; Extraction Module
+(MEM)
+概述
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/04/%E8%A7%A3%E8%AF%BB/" title="Perceptual Losses for Real-Time Style Transfer and Super-Resolution"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Perceptual Losses for Real-Time Style Transfer and Super-Resolution"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/04/%E8%A7%A3%E8%AF%BB/" title="Perceptual Losses for Real-Time Style Transfer and Super-Resolution">Perceptual Losses for Real-Time Style Transfer and Super-Resolution</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-05-03T18:56:42.000Z" title="Created 2022-05-04 02:56:42">2022-05-04</time></span></div><div class="content">1.网络模型
 
+1.1 组成部分
 
+网络模型总体分为两部分:Image Transform Net和VGG-16
 
 
+Image Transform Net是参数W待训练的网络
+VGG-16是已经预训练好参数的网络
 
+1.2 工作原理
+(1) 输入为 :
 
+原始图像\(x\)
+风格目标图\(y_s\)
+内容目标图\(y_c\)
 
+(2) Image Transform Net作用：
 
+将原始图像\(x\)经过Image
+Transform Net得到输出图像\(\hat{y}\)
+映射关系为: \(\hat{y} =
+f_W(x)\)
+其中W是Images Transform Net的参数 ， x是网络输入，y是网络输出。
 
+(3) VGG-16作用：
 
+内容层面
 
-  
+将\(\hat{y}\) 与\(y_c\)在VGG中间层的欧式距离作为Loss训练图像转换网络
+使得Image Transform Net输出的\(\hat{y}\)与目标内容图\(y_c\)越来越接近
 
+风格层面
 
+将\(\hat{y}\) 与\(y_s\)在VGG多个中间层得到的feature
+map生成的Gram矩阵 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/04/%E5%9B%BE%E5%83%8F%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/" title="图像风格迁移鼻祖"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图像风格迁移鼻祖"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/04/%E5%9B%BE%E5%83%8F%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/" title="图像风格迁移鼻祖">图像风格迁移鼻祖</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-05-03T18:54:56.000Z" title="Created 2022-05-04 02:54:56">2022-05-04</time></span></div><div class="content">图像风格迁移
 
 
+网络模型
 
+损失函数组成
 
+Loss = w1 * Lc + w2 * Ls
 
 
+Loss of
+content(Lc)
+Loss of
+style(Ls)
 
+Loss of content
 
+内容图和随机噪声图经过多次卷积滤波后，conten和noise在第4层的feature
+map的距离的平方和
 
 
-🛠️ My favorite tools
-👨‍💻 Programming and markup
-languages
 
+Lc
 
+Loss of style
 
+先对风格图和噪声图的每一层卷积得到feature map
+对feature map求gram矩阵
+计算两者gram距离的平方和
+将5层的结果加权求和
 
 
 
+Ls
 
+实验图
 
 
+卷积效果
 
-🧰 Frameworks and libraries
 
+随着卷积网络层数增加，获得的特征映射更加抽象。
+上图可以看出，层数增高的时候：
 
+内容重构图可变化性增加，具有更大的风格变化能力。
+风格随着使用的层数越多，风格迁移的稳定性越强。
 
 
+Gram矩阵
+定义
 
+n维欧式空间中任意k个向量之间两两的内积所组成的矩阵，称为这k个向量的格拉姆矩阵(Gram
+matrix)，很明显，这是一个对称矩阵。
 
 
 
+gram
 
 
 
-💻 Software and tools
+Gram
 
+计算
 
-
-
-
-
-
-
-
-</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/04/hello-world/" title="Hello World"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/04/hello-world/" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-05-03T16:06:22.921Z" title="Created 2022-05-04 00:06:22">2022-05-04</time></span></div><div class="content">Welcome to Hexo! This is your very
-first post. Check documentation for
-more info. If you get any problems when using Hexo, you can find the
-answer in troubleshooting or
-you can ask me on GitHub.
-Quick Start
-Create a new post
-1$ hexo new &quot;My New Post&quot;
-More info: Writing
-Run server
-1$ hexo server
-More info: Server
-Generate static files
-1$ hexo generate
-More info: Generating
-Deploy to remote sites
-1$ hexo deploy
-More info: Deployment
-</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/03/Transformer/" title="Transformer"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Transformer"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/03/Transformer/" title="Transformer">Transformer</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-05-03T09:11:37.977Z" title="Created 2022-05-03 17:11:37">2022-05-03</time></span></div><div class="content">Abstract
+输入图像的feature map为[ ch, h, w]。
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/04/transformer/" title="Transformer"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Transformer"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/04/transformer/" title="Transformer">Transformer</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-05-03T18:42:20.000Z" title="Created 2022-05-04 02:42:20">2022-05-04</time></span></div><div class="content">Abstract
 主要的序列转导模型基于复杂的循环或卷积神经网络，包括编码器和解码器。
 性能最好的模型还通过注意力机制连接编码器和解码器。
 我们提出了一种新的简单网络架构 Transformer
@@ -256,7 +297,4 @@ BLEU，比现有的最佳结果（包括合奏）提高了 2 BLEU 以上。
 1.Introduction
 循环神经网络(RNN)、长短期记忆(LSTM)和门控循环神经网络，尤其是在语言建模和机器翻译等序列建模和转导问题已被牢固确立为最先进的方法此后，许多努力继续推动循环语言模型和编码器-解码器架构的界限
 循环模型通常沿输入和输出序列的符号位置考虑计算。
-将位置与计算时间的步 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2016/12/28/%E5%85%AC%E5%BC%8F/" title="index.html"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="index.html"></a></div><div class="recent-post-info"><a class="article-title" href="/2016/12/28/%E5%85%AC%E5%BC%8F/" title="index.html">index.html</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2016-12-28T13:01:30.000Z" title="Created 2016-12-28 21:01:30">2016-12-28</time></span></div><div class="content">\[
-\sum_in
-\]
-</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/%E9%A6%96%E9%A1%B5/" title="No title"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/2022/05/04/%E9%A6%96%E9%A1%B5/" title="No title">No title</a><time datetime="2022-05-03T16:39:27.162Z" title="Created 2022-05-04 00:39:27">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/hello-world/" title="Hello World"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2022/05/04/hello-world/" title="Hello World">Hello World</a><time datetime="2022-05-03T16:06:22.921Z" title="Created 2022-05-04 00:06:22">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/03/Transformer/" title="Transformer"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Transformer"/></a><div class="content"><a class="title" href="/2022/05/03/Transformer/" title="Transformer">Transformer</a><time datetime="2022-05-03T09:11:37.977Z" title="Created 2022-05-03 17:11:37">2022-05-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2016/12/28/%E5%85%AC%E5%BC%8F/" title="index.html"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="index.html"/></a><div class="content"><a class="title" href="/2016/12/28/%E5%85%AC%E5%BC%8F/" title="index.html">index.html</a><time datetime="2016-12-28T13:01:30.000Z" title="Created 2016-12-28 21:01:30">2016-12-28</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">May 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2016/12/"><span class="card-archive-list-date">December 2016</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">4</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-05-03T18:11:43.432Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+将位置与计算时间的步 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/MASA-SR/" title="MASA-SR翻译"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MASA-SR翻译"/></a><div class="content"><a class="title" href="/2022/05/04/MASA-SR/" title="MASA-SR翻译">MASA-SR翻译</a><time datetime="2022-05-03T18:58:52.000Z" title="Created 2022-05-04 02:58:52">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/%E8%A7%A3%E8%AF%BB/" title="Perceptual Losses for Real-Time Style Transfer and Super-Resolution"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Perceptual Losses for Real-Time Style Transfer and Super-Resolution"/></a><div class="content"><a class="title" href="/2022/05/04/%E8%A7%A3%E8%AF%BB/" title="Perceptual Losses for Real-Time Style Transfer and Super-Resolution">Perceptual Losses for Real-Time Style Transfer and Super-Resolution</a><time datetime="2022-05-03T18:56:42.000Z" title="Created 2022-05-04 02:56:42">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/%E5%9B%BE%E5%83%8F%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/" title="图像风格迁移鼻祖"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图像风格迁移鼻祖"/></a><div class="content"><a class="title" href="/2022/05/04/%E5%9B%BE%E5%83%8F%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/" title="图像风格迁移鼻祖">图像风格迁移鼻祖</a><time datetime="2022-05-03T18:54:56.000Z" title="Created 2022-05-04 02:54:56">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/transformer/" title="Transformer"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Transformer"/></a><div class="content"><a class="title" href="/2022/05/04/transformer/" title="Transformer">Transformer</a><time datetime="2022-05-03T18:42:20.000Z" title="Created 2022-05-04 02:42:20">2022-05-04</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">May 2022</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">4</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-05-03T19:00:15.538Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

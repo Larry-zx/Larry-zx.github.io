@@ -1,0 +1,523 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MASA-SR翻译 | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="主要组成  编码器 Encoder 匹配与提取模块（MEM） Math &amp; Extraction Modules 空间自适应模块（SAM） Spatial Adaptation Modules  将Ref特征的分布映射到LR特征的分布  双残差聚合模块（DRAM）Dual Residual Aggregation Modules  进行有效的特征融合   名词解释   LR 低分辨率图像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MASA-SR翻译">
+<meta property="og:url" content="http://example.com/2022/05/04/MASA-SR/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="主要组成  编码器 Encoder 匹配与提取模块（MEM） Math &amp; Extraction Modules 空间自适应模块（SAM） Spatial Adaptation Modules  将Ref特征的分布映射到LR特征的分布  双残差聚合模块（DRAM）Dual Residual Aggregation Modules  进行有效的特征融合   名词解释   LR 低分辨率图像">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2022-05-03T18:58:52.000Z">
+<meta property="article:modified_time" content="2022-05-03T18:59:21.067Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/05/04/MASA-SR/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MASA-SR翻译',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-04 02:59:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MASA-SR翻译</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-05-03T18:58:52.000Z" title="Created 2022-05-04 02:58:52">2022-05-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-05-03T18:59:21.067Z" title="Updated 2022-05-04 02:59:21">2022-05-04</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MASA-SR翻译"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img
+src="https://pic1.zhimg.com/v2-3486f59df8faa40673ddcbe4f5212844_1440w.jpg?source=172ae18b" /></p>
+<h2 id="主要组成">主要组成</h2>
+<ul>
+<li><p>编码器 Encoder</p></li>
+<li><p>匹配与提取模块（MEM） Math &amp; Extraction Modules</p></li>
+<li><p>空间自适应模块（SAM） Spatial Adaptation Modules</p>
+<blockquote>
+<p>将Ref特征的分布映射到LR特征的分布</p>
+</blockquote></li>
+<li><p>双残差聚合模块（DRAM）Dual Residual Aggregation Modules</p>
+<blockquote>
+<p>进行有效的特征融合</p>
+</blockquote></li>
+</ul>
+<h3 id="名词解释">名词解释</h3>
+<blockquote>
+<ul>
+<li>LR 低分辨率图像</li>
+<li>Ref↓ 表示 x4双三次下采样参考图</li>
+<li>Ref 参考图</li>
+</ul>
+</blockquote>
+<h2 id="编码器">编码器</h2>
+<ul>
+<li><p>与之前使用预先训练过的VGG作为自然提取器的方法不同</p></li>
+<li><p>这里的编码器与网络的其他部分一起从头开始训练的</p></li>
+<li><p>编码器含有三个构造块</p>
+<ul>
+<li>第二个和第三个 利用stride=2的方法将featue map大小折半</li>
+</ul></li>
+<li><p>将Ref参考图传入编码器分别经过三个构造块得到三个不同比例的特征</p>
+<ul>
+<li>生成<span class="math inline">\(F_{Ref}^s\)</span> 其中s =
+1,2,4</li>
+</ul></li>
+<li><p>LR图像和Ref↓ 图像只经管编码器的第一个构造块</p>
+<ul>
+<li>生成<span class="math inline">\(F_{LR}\)</span> 和 <span
+class="math inline">\(F_{Ref↓ }\)</span></li>
+</ul></li>
+</ul>
+<h2 id="matching-extraction-module-mem">Matching &amp; Extraction Module
+(MEM)</h2>
+<h3 id="概述">概述</h3>
+<p>​
+众所周知，在自然图像的局部区域中，相邻像素可能来自公共对象共享相似的颜色统计数据。以往对自然图像先验的研究也表明，一幅图像中的相邻斑块很可能会发现它们之间的对应关系在空间上是一致的。</p>
+<p>​
+这促使我们提出了一种从粗到精的匹配方案，即粗块匹配和精块匹配。请注意，在我们的方法中，block和patch是两个不同的概念，block的大小大于patch（在我们的实验中patch为3×3的大小）。</p>
+<p>​ 如图3所示，我们首先只在feature
+space中找到block的对应关系。具体来说，我们将LR特征(<span
+class="math inline">\(F_{LR}\)</span>)展开为不重叠的block块。每个LR
+block将找到其最相关的Ref↓ block。</p>
+<p>​ 与以前的方法相比，通过这样做，匹配的计算成本显著降低。</p>
+<p>​ 为了达到足够的精度，我们进一步对每一个&lt;LR block，Ref↓
+block&gt;对进行密集patch匹配</p>
+<p>​ 在最后一个阶段，我们根据获得的对应信息提取有用的Ref feature</p>
+<p><img
+src="https://pic3.zhimg.com/80/v2-e551112dcfc05e03aecc23d0b457189e_1440w.jpg" /></p>
+<h3 id="stage-1-coarse-matching粗匹配">Stage 1: Coarse
+matching（粗匹配）</h3>
+<p>将<span class="math inline">\(F_{LR}\)</span>展开成K个不重复的blocks
+<span class="math display">\[
+\left\{  B_{LR}^0,B_{LR}^1,B_{LR}^2 ,...B_{LR}^{K-1} \right\}
+\]</span></p>
+<blockquote>
+<p>一个Block中有很多patch 对每个<span
+class="math inline">\(B_{LR}^k\)</span>块找到与它<strong>最相关</strong>的<span
+class="math inline">\(F_{Ref↓}\)</span> block 记作<span
+class="math inline">\(B_{Ref↓}^k\)</span></p>
+</blockquote>
+<p>首先将<span class="math inline">\(B_{LR}^k\)</span>的<strong>center
+patch</strong>与<span
+class="math inline">\(F_{Ref↓}\)</span>中的每一个patch进行计算<strong>余弦相似度</strong>(cosine
+similarity) <span class="math display">\[
+r_{c,j}^k = \left \langle \frac{p_c^k}{\left \| p_c^k \right \|} ,
+\frac{q_j}{\left \| q_j \right \|} \right \rangle
+\]</span></p>
+<ul>
+<li><span class="math inline">\(p_c^k\)</span>是<span
+class="math inline">\(B_{LR}^k\)</span>块的center patch</li>
+<li><span class="math inline">\(q_j\)</span>是<span
+class="math inline">\(F_{Ref↓}\)</span>块的第j个patch</li>
+<li><span
+class="math inline">\(r_{c,j}^k\)</span>表示相似性大小（similarity
+scores）</li>
+</ul>
+<p>通过<strong>相似性大小</strong>(similarity score)我们可以找到<span
+class="math inline">\(F_{Ref↓}\)</span> 中与<span
+class="math inline">\(p_c^k\)</span>最相似的patch</p>
+<p>然后crop一个围绕着这个最相似patchb并且大小为<span
+class="math inline">\([dx,dy]\)</span>的block 记作<span
+class="math inline">\(B_{Ref↓}^k\)</span></p>
+<blockquote>
+<p>根据局部相干特性,每个<span
+class="math inline">\(B_{LR}^k\)</span>块的center patch都能找到与在<span
+class="math inline">\(F_{Ref↓}\)</span>其中最相似的patch后找到对应的<span
+class="math inline">\(B_{Ref↓}^k\)</span></p>
+<p>另一方面，我们可以在<span
+class="math inline">\(F_{Ref}^s\)</span>中剪切相应的大小为<span
+class="math inline">\([s*dx,s*dy]\)</span>的block，记作<span
+class="math inline">\(B_{Ref}^{s,k}\)</span></p>
+<p>这将用于<strong>特征提取阶段</strong></p>
+</blockquote>
+<p>注意问题⚠️</p>
+<ul>
+<li>如果<span
+class="math inline">\(B_{LR}^k\)</span>的大小远大于其center
+patch的大小，则center patch可能无法代表<span
+class="math inline">\(B_{LR}^k\)</span>的全部内容</li>
+<li>这可能会误导我们找到不相关的<span
+class="math inline">\(B_{Ref↓}^k\)</span></li>
+</ul>
+<p>解决方法：</p>
+<ul>
+<li>使用具有<strong>不同膨胀率</strong>的中心块来计算相似度</li>
+<li>细节如图3的第1阶段所示，
+<ul>
+<li>其中蓝色虚线表示<em>dilation</em>=1的情况</li>
+<li>橙色虚线表示<em>dilation</em>=2的情况</li>
+<li>然后将相似性得分计算为<strong>不同扩张的结果之和</strong></li>
+</ul></li>
+</ul>
+<blockquote>
+<p>这个阶段我们得到了（<span
+class="math inline">\(B_{LR}^k\)</span>，<span
+class="math inline">\(B_{Ref↓}^k\)</span>，<span
+class="math inline">\(B_{Ref}^{s,k}\)</span>）</p>
+<p>在下面的精细匹配阶段阶段我们将限制<span
+class="math inline">\(B_{LR}^k\)</span> to <span
+class="math inline">\(B_{Ref↓}^k\)</span> 的搜索空间</p>
+</blockquote>
+<h3 id="stage-2-fine-matching精细匹配阶段阶段">Stage 2: Fine
+matching（精细匹配阶段阶段）</h3>
+<blockquote>
+<p>对<span class="math inline">\(B_{LR}^k\)</span> to <span
+class="math inline">\(B_{Ref↓}^k\)</span>进行dense path
+matching（密集补丁匹配）</p>
+<p>得到index maps集合 <span class="math inline">\(\left\{ D^0 , D^1 ,
+... D^{K-1} \right\}\)</span></p>
+<p>similarity maps 集合<span class="math inline">\(\left\{ R^0 , R^1 ,
+... R^{K-1} \right\}\)</span></p>
+</blockquote>
+<p>拿第k对(<span class="math inline">\(B_{LR}^k\)</span> , <span
+class="math inline">\(B_{Ref↓}^k\)</span>)为例 我们计算每个patch in
+<span class="math inline">\(B_{LR}^k\)</span> 与 每个patch in <span
+class="math inline">\(B_{Ref↓}^k\)</span>之间的相似性分数 <span
+class="math display">\[
+r_{i,j}^k = \left \langle \frac{p_i^k}{\left \| p_i^k \right \|} ,
+\frac{q_j^k}{\left \| q_j^k \right \|} \right \rangle
+\]</span></p>
+<ul>
+<li><span class="math inline">\(p_i^k\)</span>是<span
+class="math inline">\(B_{LR}^k\)</span>的第i个patch</li>
+<li><span class="math inline">\(q_j^k\)</span>是<span
+class="math inline">\(B_{Ref↓}^k\)</span>的第j个patch</li>
+<li>k表示第k对(<span class="math inline">\(B_{LR}^k\)</span> , <span
+class="math inline">\(B_{Ref↓}^k\)</span>)</li>
+<li>$r_{i,j}^k $表示它们的相似性大小</li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(D^k\)</span>的第i个元素的值j表示的是<span
+class="math inline">\(B_{LR}^k\)</span>的第i个patch与<span
+class="math inline">\(B_{Ref↓}^k\)</span>中第j个ptach最相似</p>
+</blockquote>
+<p><span class="math display">\[
+D_i^k = \mathop{\arg \max}_j \ r_{i,j}^k
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(R^k\)</span>的第i个元素表示的是<span
+class="math inline">\(B_{LR}^k\)</span>的第i个patch相对应的highest
+similarity score(最高相似分数)</p>
+</blockquote>
+<p><span class="math display">\[
+R_i^k = \mathop{\max}_j \ r_{i,j}^k
+\]</span></p>
+<h3 id="stage-3-feature-extraction特征提取">Stage 3: Feature
+extraction(特征提取)</h3>
+<p>根据index map <span class="math inline">\(D^k\)</span> 从<span
+class="math inline">\(B_{Ref}^{s,k}\)</span>中提取patches，生成新的feature
+map <span class="math inline">\(B_M^{s,k}\)</span></p>
+<p>更精准的说</p>
+<p><span class="math inline">\(D_i^k\)</span>表示<span
+class="math inline">\(B_{Ref↓}^k\)</span>中与<span
+class="math inline">\(B_{LR}^k\)</span>的第i个patch最相似的patch</p>
+<p>我们将<span class="math inline">\(D_i^k\)</span>个<span
+class="math inline">\(B_{Ref}^{s,k}\)</span>中的patch作为<span
+class="math inline">\(B_M^{s,k}\)</span>的第i个patch</p>
+<p>此外，由于相似性<strong>分数较高的Ref特征更有用</strong></p>
+<p>我们将<span class="math inline">\(B_M^{s,k}\)</span>与相应的<span
+class="math inline">\(R^k\)</span>相乘获得<strong>加权特征块</strong>
+<span class="math display">\[
+B_M^{s,k} := B_M^{s,k}\odot(R^k)\uparrow
+\]</span></p>
+<ul>
+<li><span class="math inline">\(()\uparrow\)</span>表示双线性插值</li>
+<li><span class="math inline">\(\odot\)</span> 表示element-wise mul</li>
+</ul>
+<p>MEM的最终结果就是将 <span class="math inline">\(\left\{ B_M^{s,0} ,
+B_M^{s,1} , B_M^{s,2},...B_M^{s,K-1}
+\right\}\)</span>进行折叠在一起获得，折叠操作是步骤一的逆向操作</p>
+<h3 id="分析">分析</h3>
+<h4 id="以往的配对方法">以往的配对方法</h4>
+<ul>
+<li><p>图像LR的像素 为 m pixels ; 图像<span
+class="math inline">\(Ref\downarrow\)</span>的像素 为 n pixels</p></li>
+<li><p>计算复杂度为O(mn)</p></li>
+</ul>
+<h4 id="mem方法">MEM方法</h4>
+<ul>
+<li>假设<span class="math inline">\(Ref\downarrow\)</span> block 有 n’
+pixels</li>
+<li>计算复杂度将被降为 O(Kn+mn’)</li>
+<li>K远小于m</li>
+<li>n‘ 远小于n</li>
+<li>通过这种从粗到精的匹配方案，计算量显著降低</li>
+</ul>
+<h2 id="spatial-adaptation-modulesam空间自适应模块">Spatial Adaptation
+Module（SAM）空间自适应模块</h2>
+<p><img
+src="https://pic1.zhimg.com/v2-3486f59df8faa40673ddcbe4f5212844_1440w.jpg?source=172ae18b" /></p>
+<p>在许多情况下，LR和Ref图像可能具有相似的内容和纹理，颜色和亮度不一样</p>
+<p>因此，提取的REF特征的分布可能与LR特征的分布不一致。因此，简单地将Ref和LR特性连接到一起，并将它们输入到下面的卷积层中并不是最佳选择。我们建议使用空间自适应模块（SAM）将提取的Ref特征的分布重新映射到LR特征的分布</p>
+<p>首先将LR特征和提取的Ref特征连接(Cat)起来，然后预先送入卷积层，以产生两个参数β和γ，这两个参数的大小与LR特征相同。</p>
+<p>我们用特征的平均值和标准偏差更新β和γ <span class="math display">\[
+\beta \leftarrow \beta + \mu_{LR}
+\\
+\gamma \leftarrow \gamma +\sigma_{LR}
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(\mu_{LR}\)</span> <span
+class="math inline">\(\sigma_{LR}\)</span>的产生方式跟<span
+class="math inline">\(\mu_{Ref}\)</span> <span
+class="math inline">\(\sigma_{Ref}\)</span> 一样</p>
+<p><span class="math inline">\(\mu_{LR}\)</span> <span
+class="math inline">\(\sigma_{LR}\)</span> 的大小是 C x 1 x 1</p>
+<p>C表示一共有C个通道</p>
+</blockquote>
+<p>然后将实例规范化(Instance Norm)应用于Ref特征，如下所示： <span
+class="math display">\[
+F_{Ref}^c \leftarrow \frac{F_{Ref}^c - \mu_{Ref}^c}{\sigma_{Ref}^c}
+\]</span> <span class="math inline">\(\mu_{Ref}^c\)</span> <span
+class="math inline">\(\sigma_{Ref}^c\)</span>
+分别表示Ref特征图在通道c的均值和方差 <span class="math display">\[
+\mu_{Ref}^c = \frac{1}{HW} \sum_{y,x}F_{Ref}^{c,y,x}
+\]</span></p>
+<p><span class="math display">\[
+\sigma_{Ref}^c  = \sqrt{\frac{1}{HW}\sum_{y,x}(F_{Ref}^{c,y,x} -
+\mu_{ref}^c)^2}
+\]</span></p>
+<p>最后，将γ和β添加到归一化Ref特征中，如下所示： <span
+class="math display">\[
+F_{Ref} \leftarrow F_{Ref}·\gamma + \beta
+\]</span> 由于Ref特征和LR特征之间的差异随空间位置而变化</p>
+<p><span class="math inline">\(\mu_{LR}\)</span> <span
+class="math inline">\(\sigma_{LR}\)</span> <span
+class="math inline">\(\mu_{Ref}\)</span> <span
+class="math inline">\(\sigma_{Ref}\)</span> 的大小为 C x 1 x 1</p>
+<p>我们使用可学习卷积来预测两个空间参数β和γ</p>
+<p>不同于只使用分割图(segmentation)去生成两个参数，SAM中的卷积将Ref和LR特征作为输入，以了解它们的差异。此外，在从卷积中获得β和γ后，我们将它们与LR特征的均值和标准偏差相加</p>
+<h2 id="dual-residual-aggregation-module-dram-双残差聚合模块">Dual
+Residual Aggregation Module (DRAM) 双残差聚合模块</h2>
+<p>在空间自适应后，使用我们提出的双剩余聚合模块（DRAM），将传输的Ref特征与LR特征融合</p>
+<p>DRAM由两个分支组成，即 <strong>LR分支</strong> 和
+<strong>Ref分支</strong></p>
+<p><strong>Ref分支</strong></p>
+<blockquote>
+<p>旨在细化Ref功能的高频细节</p>
+</blockquote>
+<ul>
+<li>首先使用stride=2的卷积对Ref Feature 进行下采样</li>
+<li>将下采样后的Ref Feature 减去 LR Feature 得到Res_Ref 残余特征</li>
+<li>将Res_Ref使用转置卷积（逆卷积）上采样后加上原始的Ref
+Featu得到新的Ref ‘ 特征图</li>
+</ul>
+<p><span class="math display">\[
+\begin{cases}
+    Res_{Ref} = Conv(F_{Ref}) - F_{LR}\\
+    F&#39;_{Ref}= F_{Ref} + DeConv(Res_{Ref})
+\end{cases}
+\]</span></p>
+<p><strong>LR分支</strong></p>
+<blockquote>
+<p>LR功能的高频细节细化</p>
+</blockquote>
+<ul>
+<li>首先使用stride=2的卷积对Ref Feature 进行下采样</li>
+<li>将 <strong>LR Feature</strong> 减去<strong>下采样后的Ref
+Feature</strong> 得到Res_LR 残余特征</li>
+<li>将Res_LR 加上 LR Feature 相加后 进行上采样的懂新的LR’ 特征图</li>
+</ul>
+<p><span class="math display">\[
+\begin{cases}
+    Res_{LR} =  F_{LR}-Conv(F_{Ref})\\
+    F&#39;_{LR}= DeConv(F_{LR}+Res_{LR})
+\end{cases}
+\]</span></p>
+<p>最后，将两个分支的输出串联起来，并以步长1通过另一个卷积层。</p>
+<p>通过这种方式，LR和Ref功能中的细节得到了增强和聚合，从而产生了更具代表性的功能。</p>
+<h2 id="loss-functions">Loss Functions</h2>
+<h3 id="reconstruction-loss重建损失">1.Reconstruction
+loss(重建损失)</h3>
+<p>采用L1损失作为重建损失</p>
+<p><span class="math display">\[
+\mathcal{L}_{rec} = \left \|  I_{HR} - I_{SR}\right\|_1
+\]</span></p>
+<h3 id="perceptual-loss知觉损失">2.Perceptual loss(知觉损失)</h3>
+<p>知觉损失的表达为 <span class="math display">\[
+\mathcal{L}_{per} = \left \|  \phi_i(I_{HR}) - \phi_i(I_{SR}) \right\|_2
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(\phi_i\)</span>表示VGG19的第i层
+这里是用conv5_4</p>
+</blockquote>
+<h3 id="adversarial-loss对抗性损失">3.Adversarial loss(对抗性损失)</h3>
+<p>它可以有效地生成具有自然细节的视觉愉悦图像 <span
+class="math display">\[
+\mathcal{L}_D =
+-\mathbb{E}_{I_{HR}}[\log(D(I_{HR},I_{SR}))]-\mathbb{E}_{I_{SR}}[\log(1-D(I_{HR},I_{SR}))],\\
+\mathcal{L}_G=-\mathbb{E}_{I_{HR}}[\log(1-D(I_{HR},I_{SR}))]-\mathbb{E}_{I_{SR}}[\log(D(I_{SR},I_{HR}))]
+\]</span></p>
+<h3 id="full-objective">4.Full objective</h3>
+<p><span class="math display">\[
+\mathcal{L} =
+\lambda_{rec}\mathcal{L}_{rec}+\lambda_{per}\mathcal{L}_{per}+\lambda_{adv}\mathcal{L_{adv}}
+\]</span></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2022/05/04/MASA-SR/">http://example.com/2022/05/04/MASA-SR/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/05/04/%E8%A7%A3%E8%AF%BB/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Perceptual Losses for Real-Time Style Transfer and Super-Resolution</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%BB%84%E6%88%90"><span class="toc-number">1.</span> <span class="toc-text">主要组成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="toc-number">1.1.</span> <span class="toc-text">名词解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">编码器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#matching-extraction-module-mem"><span class="toc-number">3.</span> <span class="toc-text">Matching &amp; Extraction Module
+(MEM)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stage-1-coarse-matching%E7%B2%97%E5%8C%B9%E9%85%8D"><span class="toc-number">3.2.</span> <span class="toc-text">Stage 1: Coarse
+matching（粗匹配）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stage-2-fine-matching%E7%B2%BE%E7%BB%86%E5%8C%B9%E9%85%8D%E9%98%B6%E6%AE%B5%E9%98%B6%E6%AE%B5"><span class="toc-number">3.3.</span> <span class="toc-text">Stage 2: Fine
+matching（精细匹配阶段阶段）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stage-3-feature-extraction%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-number">3.4.</span> <span class="toc-text">Stage 3: Feature
+extraction(特征提取)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">3.5.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A5%E5%BE%80%E7%9A%84%E9%85%8D%E5%AF%B9%E6%96%B9%E6%B3%95"><span class="toc-number">3.5.1.</span> <span class="toc-text">以往的配对方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mem%E6%96%B9%E6%B3%95"><span class="toc-number">3.5.2.</span> <span class="toc-text">MEM方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spatial-adaptation-modulesam%E7%A9%BA%E9%97%B4%E8%87%AA%E9%80%82%E5%BA%94%E6%A8%A1%E5%9D%97"><span class="toc-number">4.</span> <span class="toc-text">Spatial Adaptation
+Module（SAM）空间自适应模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dual-residual-aggregation-module-dram-%E5%8F%8C%E6%AE%8B%E5%B7%AE%E8%81%9A%E5%90%88%E6%A8%A1%E5%9D%97"><span class="toc-number">5.</span> <span class="toc-text">Dual
+Residual Aggregation Module (DRAM) 双残差聚合模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loss-functions"><span class="toc-number">6.</span> <span class="toc-text">Loss Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#reconstruction-loss%E9%87%8D%E5%BB%BA%E6%8D%9F%E5%A4%B1"><span class="toc-number">6.1.</span> <span class="toc-text">1.Reconstruction
+loss(重建损失)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#perceptual-loss%E7%9F%A5%E8%A7%89%E6%8D%9F%E5%A4%B1"><span class="toc-number">6.2.</span> <span class="toc-text">2.Perceptual loss(知觉损失)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#adversarial-loss%E5%AF%B9%E6%8A%97%E6%80%A7%E6%8D%9F%E5%A4%B1"><span class="toc-number">6.3.</span> <span class="toc-text">3.Adversarial loss(对抗性损失)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#full-objective"><span class="toc-number">6.4.</span> <span class="toc-text">4.Full objective</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/MASA-SR/" title="MASA-SR翻译"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MASA-SR翻译"/></a><div class="content"><a class="title" href="/2022/05/04/MASA-SR/" title="MASA-SR翻译">MASA-SR翻译</a><time datetime="2022-05-03T18:58:52.000Z" title="Created 2022-05-04 02:58:52">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/%E8%A7%A3%E8%AF%BB/" title="Perceptual Losses for Real-Time Style Transfer and Super-Resolution"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Perceptual Losses for Real-Time Style Transfer and Super-Resolution"/></a><div class="content"><a class="title" href="/2022/05/04/%E8%A7%A3%E8%AF%BB/" title="Perceptual Losses for Real-Time Style Transfer and Super-Resolution">Perceptual Losses for Real-Time Style Transfer and Super-Resolution</a><time datetime="2022-05-03T18:56:42.000Z" title="Created 2022-05-04 02:56:42">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/%E5%9B%BE%E5%83%8F%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/" title="图像风格迁移鼻祖"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图像风格迁移鼻祖"/></a><div class="content"><a class="title" href="/2022/05/04/%E5%9B%BE%E5%83%8F%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/" title="图像风格迁移鼻祖">图像风格迁移鼻祖</a><time datetime="2022-05-03T18:54:56.000Z" title="Created 2022-05-04 02:54:56">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/transformer/" title="Transformer"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Transformer"/></a><div class="content"><a class="title" href="/2022/05/04/transformer/" title="Transformer">Transformer</a><time datetime="2022-05-03T18:42:20.000Z" title="Created 2022-05-04 02:42:20">2022-05-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
