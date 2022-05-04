@@ -1,0 +1,477 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>ChipGAN | 扁同学不发言的个人博客</title><meta name="keywords" content="风格迁移,图像生成,GAN,cs.CV"><meta name="author" content="扁同学不发言"><meta name="copyright" content="扁同学不发言"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="概要 ​ 风格转换已成功应用于照片，生成逼真的西方绘画。然而，由于中西绘画技法的内在差异，直接套用已有的方法，对中国水墨画风格的转换并不能产生令人满意的效果。本文提出了一种基于ChipGAN的端到端（ end-to-end）生成对抗性网络体系结构，用于照片转化为中国水墨画。  ChipGAN的核心模块实施了三个约束  空白（voids） 笔触（ brush strokes）（画笔描边） 水墨色调和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ChipGAN">
+<meta property="og:url" content="http://example.com/2022/05/04/ChipGAN/index.html">
+<meta property="og:site_name" content="扁同学不发言的个人博客">
+<meta property="og:description" content="概要 ​ 风格转换已成功应用于照片，生成逼真的西方绘画。然而，由于中西绘画技法的内在差异，直接套用已有的方法，对中国水墨画风格的转换并不能产生令人满意的效果。本文提出了一种基于ChipGAN的端到端（ end-to-end）生成对抗性网络体系结构，用于照片转化为中国水墨画。  ChipGAN的核心模块实施了三个约束  空白（voids） 笔触（ brush strokes）（画笔描边） 水墨色调和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/05/04/ChipGAN/fig1.png">
+<meta property="article:published_time" content="2022-05-04T07:21:07.000Z">
+<meta property="article:modified_time" content="2022-05-04T07:39:16.611Z">
+<meta property="article:author" content="扁同学不发言">
+<meta property="article:tag" content="风格迁移">
+<meta property="article:tag" content="图像生成">
+<meta property="article:tag" content="GAN">
+<meta property="article:tag" content="cs.CV">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/05/04/ChipGAN/fig1.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/05/04/ChipGAN/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ChipGAN',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-04 15:39:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="扁同学不发言的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E6%96%B0%E4%B8%80.JPG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 专栏</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/2022/05/04/ChipGAN/fig1.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">扁同学不发言的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 专栏</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ChipGAN</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-04T07:21:07.000Z" title="发表于 2022-05-04 15:21:07">2022-05-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-04T07:39:16.611Z" title="更新于 2022-05-04 15:39:16">2022-05-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">论文笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ChipGAN"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="概要">概要</h1>
+<p>​
+风格转换已成功应用于照片，生成逼真的西方绘画。然而，由于中西绘画技法的内在差异，直接套用已有的方法，对中国水墨画风格的转换并不能产生令人满意的效果。本文提出了一种基于ChipGAN的端到端（
+end-to-end）生成对抗性网络体系结构，用于照片转化为中国水墨画。</p>
+<blockquote>
+<p>ChipGAN的核心模块实施了三个约束</p>
+<ul>
+<li><p>空白（voids）</p></li>
+<li><p>笔触（ brush strokes）（画笔描边）</p></li>
+<li><p>水墨色调和扩散（ink wash tone and diffusion）</p></li>
+</ul>
+<p>以解决中国水墨画中普遍采用的三个关键技术。</p>
+</blockquote>
+<p>​
+我们通过咨询专业艺术家，基于新建的中国水墨照片和图像数据集，进行风格化感知研究，以评估生成的绘画与真实绘画的相似性。与最先进的网络和高度程式化的感知研究核心相比，该方法在视觉质量方面的优势表明了该方法的有效性。</p>
+<h1 id="介绍">介绍</h1>
+<h1 id="截屏2022-03-13-09.41.39"><img src="fig1.png"
+alt="截屏2022-03-13 09.41.39" /></h1>
+<p>​
+任何成功的艺术家都有自己独特的绘画风格。研究绘画风格中的这种独特性对绘画技能的训练很重要。除了传统的艺术理论培训，计算机视觉和图形技术如风格迁移和非真实感渲染，旨在帮助绘画艺术家系统地理解如何通过观察真实场景或照片，运用适当的绘画技巧呈现独特风格。</p>
+<p>​
+将绘画风格迁移到图像可以通过纹理合成来实现，使用低级别的图像特征，忽略图像的语义信息。利用卷积神经网络（CNN）从图像中提取高级语义信息进行风格转换，这显示了视觉逼真的结果（如上图，根据真实西方绘画的风格从照片到生成的西方绘画）。</p>
+<p>​
+然而，直接将现有的风格转换技术应用到中国水墨画中会产生不切实际的结果（图中，生成的水墨画，请注意混乱的线条和颜色）。这是因为中国水墨画和西方水墨画有几个本质的区别，在图中的最后一列中，西方真实绘画与水墨画真实绘画之间的比较表明：</p>
+<ul>
+<li>1）就一幅画的构图而言，西方绘画在整个图像上充满了色彩，而中国水墨画则有一定的空白区域；</li>
+<li>2）
+就表达技巧而言，西方绘画很少使用强线，而它指的是白皮书中的一些区域，中国水墨画家特意留下这些区域来启发观众去想象。会议：2018年10月22日至26日，韩国首尔,中国水墨画采用线条鲜明的笔触来强调轮廓中的物体；</li>
+<li>3）
+在色彩丰富性方面，西方绘画倾向于使用多种颜色，而中国水墨画主要使用不同灰度的墨水，这些墨水会扩散到一张宣纸上（水墨色调和扩散）</li>
+</ul>
+<p>​
+为了实现中国水墨画的风格转换，我们提出了一种基于生成对抗网络（GAN）的中国水墨画风格转换解决方案，名为CHIPGAN。根据中国水墨画的三种技法，我们提出了三种特殊的约束：空白、笔触、水墨色调和扩散。</p>
+<blockquote>
+<p>对于空洞，我们的约束结合了<strong>对抗损失</strong>和<strong>周期一致性损失</strong>，因为它们的目的是通过将信息转换为不可感知的信号来生成更真实的结果，从而留下白色区域。</p>
+</blockquote>
+<blockquote>
+<p>对于画笔笔划，我们嵌入了一个预先训练好的<strong>整体嵌套边缘检测器</strong>（holistically-nested
+edge
+detector），并在照片和假画的边缘映射之间加强重新设计的交叉熵损失，以强调有力的线条。</p>
+</blockquote>
+<blockquote>
+<p>对于水墨扩散和色调，我们使用<strong>腐蚀和模糊</strong>(eroded and
+blurred)的图像来模拟这种绘画特性，并提出了<strong>水墨鉴别器</strong>来区分处理过的真假画</p>
+</blockquote>
+<p>​
+现有的绘画数据集主要包含西方画家的作品（如梵高、莫奈等），没有包含相应中国水墨画的真实照片和图像的可用数据集。为了解决我们的问题，我们提供了一个中国水墨画数据集，其中包括从互联网和艺术工作室收集的真实场景照片和绘画图像，我们的数据集名为“ChipPhi”。</p>
+<blockquote>
+<p>数据集包括</p>
+<ul>
+<li>1630张马的照片（不同颜色和不同姿势）</li>
+<li>912张徐悲鸿的绘画图像</li>
+<li>1976张风景照片（世界著名风景）</li>
+<li>1542张黄宾虹的绘画图像的景观数据集</li>
+</ul>
+</blockquote>
+<p>总之，本文的贡献有三个方面</p>
+<ul>
+<li>我们提出了ChipGAN，这是第一个执行从照片到中国水墨画风格转换的3个弱监督的深度网络架构，特别考虑了中国水墨画的三个基本技术：空白、笔触、水墨色调和扩散</li>
+<li>我们引入了专业艺术家参与的风格化知觉研究，以评估原画和真画之间的风格一致性，并借助深度神经网络分析中国水墨画家的技巧</li>
+<li>我们建立了第一个包含中国水墨画真实场景和图像的数据集ChipPhi，以便于训练和测试所提出的方法，并有助于中国水墨画风格转移的后续研究</li>
+</ul>
+<h1 id="相关工作">相关工作</h1>
+<p>​
+<strong>图像风格迁移</strong>意味着将某个示例图像的样式迁移到目标图像。以前的图像级风格转换可以分为纹理合成和基于approache的卷积神经网络</p>
+<p>​
+<strong>域级风格传递</strong>是指将给定的图像（如照片）与某个域的风格（如某个画家的风格）进行转换。它是通过基于生成性对抗网络（GAN）的方法实现的。</p>
+<p>​ 此外，我们还回顾了一些专门为中国水墨画设计的计算方法</p>
+<ul>
+<li><p>纹理合成</p>
+<blockquote>
+<p>有一些非参数算法可以通过对给定的纹理图像重新采样来合成纹理。</p>
+<p>Efros和Freeman提出了一种对应映射，根据目标图像的图像强度约束纹理合成过程。</p>
+<p>Ashikhmin专注于传输高频纹理，但保留目标图像的比例。</p>
+<p>Hertzmanet al.应用图像类比将源图像的样式转换为目标图像。</p>
+<p>然而，由于纹理合成主要依赖于面片和低层次的表现，它们无法传递艺术作品的语义风格</p>
+</blockquote></li>
+<li><p>CNN based approaches</p>
+<blockquote>
+<p>基于CNN的模型旨在通过预先训练的卷积神经网络提取语义表示。</p>
+<p>Gatyset
+al.[11]首先使用CNN获取图像的表示，并在自然照片上重现著名的喘息风格。</p>
+<p>Liet al.[30]发现线性核是极大平方的一个很好的替代品。</p>
+<p>Yin[48]和Chen及Hsu[3]研究了内容感知神经风格转移，并改善了结果。</p>
+<p>这些方法大多存在速度慢、计算量大的问题，可通过[21,39]中的方法进行加速。Li和Wand[29]训练了一个马尔可夫前馈网络来解决效率问题。</p>
+<p>Dumoulinet等人[7]建议同时学习多种风格。虽然这些方法为西方绘画创造了令人印象深刻的形象，但由于中国水墨画的本质不同，它们无法传递中国水墨画的风格</p>
+</blockquote></li>
+<li><p>GAN based approaches</p>
+<blockquote>
+<p>从GAN的角度处理风格转换任务时，一些图像到图像的翻译方法是相当有效的。</p>
+<p>CoupledGAN[34]通过实施权重共享约束来学习多域图像的关联分布。</p>
+<p>然而，这种方法只能以一个noise vector作为输入来生成成对的图像。</p>
+<p>因此，它不能直接用作样式转换模型。</p>
+<p>Liuet等人[33]将CoupledGAN[34]与变分自动编码器[24]结合起来，提出了一个名为UNIT[33]的框架。</p>
+<p>Zhuet al.引入循环一致性损失来减少映射的置换，并提出CycleGAN[50]。</p>
+<p>基于CycleGAN[50]的体系结构，DistanceGAN[2]实施了一个约束，即在映射到另一个域时，一个域中两个样本的距离应保持不变。</p>
+<p>我们还在模型中选择周期一致性损失来克服模式崩溃[13]，并将其与对抗性损失相结合来模拟空洞。</p>
+<p>虽然周期一致性损失使模型保留了原始照片中的一些细节，但它同时也会错误地删除一些重要的笔画，这促使我们为中国水墨画的笔画建模设置额外的约束</p>
+</blockquote></li>
+<li><p>Computational methods for Chinese ink wash paintings</p>
+<blockquote>
+<p>中国水墨画可以使用不同的计算方法生成。</p>
+<p>Yuet
+al.将真实绘画的笔触纹理与给定景观图像的颜色信息相结合，合成一幅水墨画。</p>
+<p>Xuet
+al.用事先准备好的工具分解中国水墨画的笔触用于渲染动画的笔刷笔划库。</p>
+<p>Yang和Xu通过提供自动笔刷笔划轨迹估计，进一步完善了笔刷笔划分解方法。</p>
+<p>Wang基于Kubelka-Munk方程，提出了一种模拟水墨扩散的有效算法。</p>
+<p>Yehet al.和Wayet
+al.基于3D模型的板线笔划和内部着色生成链接水墨画。</p>
+<p>Liang和Jin通过对边缘、颜色和纸张纹理的图像处理，从给定的照片生成水墨画。</p>
+<p>我们的方法不再像以前那样依赖现有的<strong>笔画模拟</strong>和<strong>低级图像特征</strong>，而是<strong>探索数据驱动技术来学习真实的中国水墨画特征表示</strong></p>
+</blockquote></li>
+</ul>
+<h1 id="提议的方法">提议的方法</h1>
+<p>chipGAN学习从照片领域（例如，由现实世界的马的照片定义）到绘画领域（例如，由中国水墨画的马定义）的映射。</p>
+<ul>
+<li><p>在<strong>空白约束</strong>中，我们结合<strong>循环一致性损失</strong>和对抗性损失作为处理空白(voids)技术的约束条件</p></li>
+<li><p>在<strong>笔触约束</strong>中，提出了brush
+strokeloss去除不必要的笔触，同时保留精华；</p></li>
+<li><p>在<strong>水墨约束</strong>中添加了<strong>扩散效应</strong>（diffusion
+effect）和<strong>水墨损失</strong>，以确保整个图像的正确色调</p></li>
+</ul>
+<figure>
+<img src="chipan结构图.png" alt="截屏2022-03-13 11.53.41" />
+<figcaption aria-hidden="true">截屏2022-03-13 11.53.41</figcaption>
+</figure>
+<h2 id="void-constraint">1.Void constraint</h2>
+<p>直观地说，应用空白意味着在画布上的适当位置留下空白。</p>
+<p>以马为例，适当地应用空洞需要生成的图像完全忽略天空，并且部分地忽略照片中的草，同时清晰地保持马的轮廓，如图的中间部分所示。</p>
+<p>马的照片和一幅中国水墨画具有不同的熵，因为照片与绘画图像相比具有丰富的颜色和纹理。</p>
+<p>在图像到图像的翻译任务中，利用源域和目标域之间的这种不同熵，通过组合对抗性损失和循环一致性损失，将源图像的信息有效地转换为几乎不可感知的信号。</p>
+<p>因此，我们采用了类似的策略来实施空白约束</p>
+<h3 id="adversarial-loss">Adversarial loss</h3>
+<p>给出被认为是分别为X和Y的域的未配对的训练集合</p>
+<p>我们的模型给出两个映射关系：<span class="math inline">\(G :
+X\rightarrow Y \; F:Y \rightarrow X\)</span></p>
+<p>对于$G : XY <span class="math inline">\(以及他的辨别器\)</span>D_Y$
+的对抗损失是这样定义的</p>
+<figure>
+<img src="adv%20loss.png" alt="截屏2022-03-13 12.03.53" />
+<figcaption aria-hidden="true">截屏2022-03-13 12.03.53</figcaption>
+</figure>
+<h3 id="cycle-consistency-loss">Cycle consistency loss</h3>
+<p>​ 我们通过将给定的图像X从domain X to
+target域Y中翻译出来，然后返回到domainX，这将产生相同的图像，从而增加循环一致性约束，公式表达为<span
+class="math inline">\(F(G(X))\approx X\)</span>
+。由于循环一致性约束要求在两个方向上进行恢复，因此对于每个在Domain
+Y的图像，还存在一个循环一致性约束$G(F(Y)) Y $</p>
+<figure>
+<img src="cycle%20loss.png" alt="截屏2022-03-13 13.22.18" />
+<figcaption aria-hidden="true">截屏2022-03-13 13.22.18</figcaption>
+</figure>
+<p>这种约束使得生成的图像保留了源域的一些信息，从而可以将生成的图像转换回源域。</p>
+<h2 id="brush-stroke-constraint">Brush stroke constraint</h2>
+<p><img src="笔触结果.png" alt="截屏2022-03-13 13.34.26" style="zoom:20%;" /></p>
+<p>​
+考虑到正确生成的空白区域，我们的下一个目标是增加笔触，以清晰地描绘中国水墨画风格的物体轮廓例如马的头部和身体应该有强烈的轮廓。</p>
+<p>​
+为了以统一的方式对中国水墨画中不同厚度的各种类型的笔划进行建模，我们制定了我们的<strong>笔触约束</strong>，用于加强真实照片和生成绘画的不同级别的边缘映射之间的一致性。</p>
+<p>​
+我们采用<strong>整体嵌套的边缘检测器</strong>从输入图像中提取五层边缘，以模拟五种不同厚度的笔划。</p>
+<p>​
+然后，我们合并从预先训练的VGG-16特征提取程序的不同阶段生成的边缘映射，以获得最终的边缘映射。与将边缘检测任务视为像素级<strong>二值分类问题</strong>不同，我们从<strong>回归</strong>的角度训练了一个多级边缘检测器，以获得<strong>不同厚度</strong>的平滑笔划。</p>
+<p>​ training ground
+truth中的每个像素都用0到1的实数标记，这表明它们可能是边缘的一部分。</p>
+<p>​ 我们获得真实图像的edge map E(x) 以及 生成图像的edge map E(G(x))</p>
+<p>​ 然后我们将E(x)作为ground truth
+然后计算平衡交叉熵损失以让G生成正确的笔触</p>
+<figure>
+<img src="笔触.png" alt="截屏2022-03-13 13.32.55" />
+<figcaption aria-hidden="true">截屏2022-03-13 13.32.55</figcaption>
+</figure>
+<ul>
+<li>N是照片或假画边缘图中的像素总数</li>
+<li><span class="math inline">\(\mu\)</span>是一个平衡权重
+<ul>
+<li><span class="math inline">\(\mu\)</span> =N_/N and 1-<span
+class="math inline">\(\mu\)</span> = N+/N</li>
+<li>N_ 是边缘图中所有不是边缘点的可能性之和</li>
+<li>N+是边缘图中所有是边缘点的可能性之和</li>
+</ul></li>
+</ul>
+<h2 id="ink-wash-constraint">ink wash constraint</h2>
+<p>​
+正确模拟了空洞和笔触，我们的最终处理是使<strong>全局色调</strong>（例如，生成的马画的整体色温应接近真实色温）和<strong>扩散效果</strong>（例如，马的腹部显示链接扩散到宣纸上的不同灰度）在真实绘制和生成绘制g（x）之间保持一致。因此，我们进一步引入了<strong>水墨约束</strong>。</p>
+<p>​
+水墨在宣纸上的扩散是近似各向同性的，所以我们用<strong>侵蚀操作</strong>和<strong>高斯模糊操作</strong>来模拟它。</p>
+<p>​
+当突出的物体被模糊时，这个操作会抑制纹理和内容信息的显式比较，因此，该模型更倾向于关注tone（风格？）的一致性，如图所示</p>
+<figure>
+<img src="ink%20water.png" alt="截屏2022-03-13 13.55.20" />
+<figcaption aria-hidden="true">截屏2022-03-13 13.55.20</figcaption>
+</figure>
+<p>因此，我们添加了一个对抗性鉴别器<span
+class="math inline">\(D_I\)</span>，用于区分<span
+class="math inline">\(y_{eb}\)</span>和<span
+class="math inline">\(G(x)_eb\)</span></p>
+<figure>
+<img src="ink%20water%20yeb.png" alt="截屏2022-03-13 13.57.38" />
+<figcaption aria-hidden="true">截屏2022-03-13 13.57.38</figcaption>
+</figure>
+<ul>
+<li>y_eb是经过侵蚀和模糊处理的真实绘画</li>
+<li>G(x)_eb是经过侵蚀和模糊处理的生成绘画</li>
+<li>⊖是侵蚀操作</li>
+<li>B是一个侵蚀核</li>
+<li>高斯模糊核 <span class="math inline">\(G_{k,l} =
+\frac{1}{2\pi\sigma^2}exp(-\frac{k^2+l^2}{2\sigma^2})\)</span></li>
+</ul>
+<p>最后我们定一个水墨画损失:</p>
+<figure>
+<img src="ink%20water%20loss.png" alt="截屏2022-03-13 14.02.07" />
+<figcaption aria-hidden="true">截屏2022-03-13 14.02.07</figcaption>
+</figure>
+<h2 id="full-objective">Full objective</h2>
+<p>我们的全部目标是上述四种损失的线性组</p>
+<figure>
+<img src="funll%20loss.png" alt="截屏2022-03-13 14.05.02" />
+<figcaption aria-hidden="true">截屏2022-03-13 14.05.02</figcaption>
+</figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">扁同学不发言</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/05/04/ChipGAN/">http://example.com/2022/05/04/ChipGAN/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">扁同学不发言的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/">风格迁移</a><a class="post-meta__tags" href="/tags/%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90/">图像生成</a><a class="post-meta__tags" href="/tags/GAN/">GAN</a><a class="post-meta__tags" href="/tags/cs-CV/">cs.CV</a></div><div class="post_share"><div class="social-share" data-image="/2022/05/04/ChipGAN/fig1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/04/GanGANv2/"><img class="prev-cover" src="/2022/05/04/GanGANv2/3.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">GanGANv2</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/04/MGUIT/"><img class="next-cover" src="/2022/05/04/MGUIT/1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MGUIT</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/04/MGUIT/" title="MGUIT"><img class="cover" src="/2022/05/04/MGUIT/1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">MGUIT</div></div></a></div><div><a href="/2022/05/04/GanGANv2/" title="GanGANv2"><img class="cover" src="/2022/05/04/GanGANv2/3.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">GanGANv2</div></div></a></div><div><a href="/2022/05/04/informative-drawing/" title="informative-drawing"><img class="cover" src="/2022/05/04/informative-drawing/1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">informative-drawing</div></div></a></div><div><a href="/2022/05/04/Image%20Style%20Transfer/" title="Image Style Transfer"><img class="cover" src="/2022/05/04/Image%20Style%20Transfer/fig1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">Image Style Transfer</div></div></a></div><div><a href="/2022/05/04/PLST-SR/" title="Perceptual Losses for Real-Time Style Transfer and Super-Resolution"><img class="cover" src="https://pic4.zhimg.com/v2-8e9936fdcfd4e8371720b9834f8f97d7_r.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">Perceptual Losses for Real-Time Style Transfer and Super-Resolution</div></div></a></div><div><a href="/2022/05/04/MASA-SR/" title="MASA-SR"><img class="cover" src="https://pic1.zhimg.com/v2-3486f59df8faa40673ddcbe4f5212844_1440w.jpg?source=172ae18b" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">MASA-SR</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E6%96%B0%E4%B8%80.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">扁同学不发言</div><div class="author-info__description">AIArt@HDU</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Larry-zx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Larry-zx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/larry-19-22-31" target="_blank" title="Zhihu"><i class="fa-brands fa-zhihu"></i></a><a class="social-icon" href="https://mobile.twitter.com/Larry37722397" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a><a class="social-icon" href="https://www.youtube.com/channel/UCzDXYobI-mUP5WgvA37er6A" target="_blank" title="Youtube"><i class="fa-brands fa-youtube"></i></a><a class="social-icon" href="https://www.kaggle.com/larryzxai" target="_blank" title="Kaggle"><i class="fa-brands fa-kaggle"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hi , welcome to my blog 🤔</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%A6%81"><span class="toc-text">概要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%AA%E5%B1%8F2022-03-13-09.41.39"><span class="toc-text"></span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E8%AE%AE%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">提议的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#void-constraint"><span class="toc-text">1.Void constraint</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#adversarial-loss"><span class="toc-text">Adversarial loss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cycle-consistency-loss"><span class="toc-text">Cycle consistency loss</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#brush-stroke-constraint"><span class="toc-text">Brush stroke constraint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ink-wash-constraint"><span class="toc-text">ink wash constraint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#full-objective"><span class="toc-text">Full objective</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/MASA-SR/" title="MASA-SR"><img src="https://pic1.zhimg.com/v2-3486f59df8faa40673ddcbe4f5212844_1440w.jpg?source=172ae18b" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MASA-SR"/></a><div class="content"><a class="title" href="/2022/05/04/MASA-SR/" title="MASA-SR">MASA-SR</a><time datetime="2022-05-04T07:58:52.000Z" title="发表于 2022-05-04 15:58:52">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/informative-drawing/" title="informative-drawing"><img src="/2022/05/04/informative-drawing/1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="informative-drawing"/></a><div class="content"><a class="title" href="/2022/05/04/informative-drawing/" title="informative-drawing">informative-drawing</a><time datetime="2022-05-04T07:56:42.000Z" title="发表于 2022-05-04 15:56:42">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/GanGANv2/" title="GanGANv2"><img src="/2022/05/04/GanGANv2/3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GanGANv2"/></a><div class="content"><a class="title" href="/2022/05/04/GanGANv2/" title="GanGANv2">GanGANv2</a><time datetime="2022-05-04T07:31:06.000Z" title="发表于 2022-05-04 15:31:06">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/ChipGAN/" title="ChipGAN"><img src="/2022/05/04/ChipGAN/fig1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ChipGAN"/></a><div class="content"><a class="title" href="/2022/05/04/ChipGAN/" title="ChipGAN">ChipGAN</a><time datetime="2022-05-04T07:21:07.000Z" title="发表于 2022-05-04 15:21:07">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/MGUIT/" title="MGUIT"><img src="/2022/05/04/MGUIT/1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MGUIT"/></a><div class="content"><a class="title" href="/2022/05/04/MGUIT/" title="MGUIT">MGUIT</a><time datetime="2022-05-04T07:19:48.000Z" title="发表于 2022-05-04 15:19:48">2022-05-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By 扁同学不发言</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="#">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://example.com/2022/05/04/ChipGAN/'
+    this.page.identifier = '2022/05/04/ChipGAN/'
+    this.page.title = 'ChipGAN'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+}
+
+if ('Valine' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>GanGANv2 | 扁同学不发言的个人博客</title><meta name="keywords" content="图像生成,GAN,cs.CV,深度学习"><meta name="author" content="扁同学不发言"><meta name="copyright" content="扁同学不发言"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Product-of-experts GANs 输入：  图像数据集x M个输入方式（多模态）  目标： 训练一个单一的操作模型，该模型可以学习在可能模式的任意子集\(\mathcal{Y}\)上捕获图像分布 在本文中，我们考虑了四种不同的模式:  文本text 语义分割segmentation 草图sketch 风格参照style reference  学习基于任何子数据的图像分布\(p(x\m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GanGANv2">
+<meta property="og:url" content="http://example.com/2022/05/04/GanGANv2/index.html">
+<meta property="og:site_name" content="扁同学不发言的个人博客">
+<meta property="og:description" content="Product-of-experts GANs 输入：  图像数据集x M个输入方式（多模态）  目标： 训练一个单一的操作模型，该模型可以学习在可能模式的任意子集\(\mathcal{Y}\)上捕获图像分布 在本文中，我们考虑了四种不同的模式:  文本text 语义分割segmentation 草图sketch 风格参照style reference  学习基于任何子数据的图像分布\(p(x\m">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/05/04/GanGANv2/3.png">
+<meta property="article:published_time" content="2022-05-04T07:31:06.000Z">
+<meta property="article:modified_time" content="2022-05-04T07:54:18.696Z">
+<meta property="article:author" content="扁同学不发言">
+<meta property="article:tag" content="图像生成">
+<meta property="article:tag" content="GAN">
+<meta property="article:tag" content="cs.CV">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/05/04/GanGANv2/3.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/05/04/GanGANv2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GanGANv2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-04 15:54:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="扁同学不发言的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E6%96%B0%E4%B8%80.JPG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 专栏</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/2022/05/04/GanGANv2/3.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">扁同学不发言的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 专栏</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GanGANv2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-04T07:31:06.000Z" title="发表于 2022-05-04 15:31:06">2022-05-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-04T07:54:18.696Z" title="更新于 2022-05-04 15:54:18">2022-05-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">论文笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GanGANv2"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="product-of-experts-gans">Product-of-experts GANs</h1>
+<p><strong>输入：</strong></p>
+<ul>
+<li>图像数据集x</li>
+<li>M个输入方式（多模态）</li>
+</ul>
+<p><strong>目标：</strong></p>
+<p>训练一个单一的操作模型，该模型可以学习在可能模式的任意子集<span
+class="math inline">\(\mathcal{Y}\)</span>上捕获图像分布</p>
+<p><strong>在本文中，我们考虑了四种不同的模式:</strong></p>
+<ul>
+<li><p>文本text</p></li>
+<li><p>语义分割segmentation</p></li>
+<li><p>草图sketch</p></li>
+<li><p>风格参照style reference</p></li>
+</ul>
+<p>学习基于任何子数据的图像分布<span
+class="math inline">\(p(x\mid\mathcal{Y})\)</span>是一项挑战</p>
+<p>因为它需要一个生成器同时去建模<span
+class="math inline">\(2^M\)</span>个分布</p>
+<p>特别值得注意的是</p>
+<p>当<span
+class="math inline">\(\mathcal{Y}\)</span>是空集合时，生成器需要捕获无条件的图像分布</p>
+<p>其他几种模态下的单独的条件分布</p>
+<p><span class="math inline">\(p(x|y_i) , \forall i \in
+\left\{1,2...M\right\}\)</span></p>
+<p>例如，图像分布仅以文本为条件。这些设置在隔离单独中很受欢迎并得到了广泛的研究，我们的目标是将它们置于一个统一的框架下。</p>
+<h2 id="product-of-experts-modeling">Product-of-experts modeling</h2>
+<p>直观地说，每个输入模态都增加了合成图像必须满足的约束。</p>
+<p>满足所有约束的图像集是满足单个约束的图像集的交点</p>
+<p><strong>分布的乘积类似于集合的交集</strong></p>
+<figure>
+<img src="1.png"
+alt="The product of distributions is analogous to the intersection of sets" />
+<figcaption aria-hidden="true">The product of distributions is analogous
+to the intersection of sets</figcaption>
+</figure>
+<p>如上图，我们通过一个强有力的假设对此进行建模</p>
+<p>即<strong>联合条件概率分布</strong><span
+class="math inline">\(p(x\mid y_i,y_j)\)</span>与单条件概率分布<span
+class="math inline">\(p(x \mid y_i)\)</span>和<span
+class="math inline">\(p(x \mid y_j)\)</span>的乘积成正比</p>
+<p>在此设置下，为了使product分布在某个区域具有高密度，每个单独的分布需要在该区域具有高密度，从而满足每个约束</p>
+<p>通过相乘的方式组合多个分布（“experts”）以前被称为<strong>Product-of-experts</strong></p>
+<p>我们的生成器被训练用来将一个latent code z 映射到一个image x</p>
+<p>因为输出的图像被latent code z 唯一的确定</p>
+<p>所以评估<span
+class="math inline">\(p(x\mid\mathcal{Y})\)</span>的问题可以等价为评估<span
+class="math inline">\(p(z\mid\mathcal{Y})\)</span>的问题</p>
+<p>我们使用Product-of-experts来对潜在(latent)条件分布进行建模 <span
+class="math display">\[
+p(z\mid\mathcal{Y}) \propto p&#39;(z)\prod_{y_i\in \mathcal{Y}}q(z\mid
+y_i)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(p&#39;(z)\)</span>是先验概率分布</li>
+<li>每个expert <span class="math inline">\(q(z\mid
+y_i)\)</span>是编码器预测的单一模态的分布</li>
+</ul>
+<blockquote>
+<p>当没有给出模式时，潜在分布只是先验分布。</p>
+<p>随着提供更多的模式，约束的数量增加，可能输出图像的空间缩小，潜在分布变窄。</p>
+</blockquote>
+<h2
+id="multiscale-and-hierarchical-latent-space多尺度层次潜在空间">Multiscale
+and hierarchical latent space（多尺度层次潜在空间）</h2>
+<p>有一些我们考虑的模态是二维的，自然包含多个尺度的信息。</p>
+<p>因此，我们设计了一个带有不同分辨率下的潜变量的hierarchical latent
+space（潜在层次空间）</p>
+<p>这允许我们直接将信息从空间编码器的每个分辨率传递到潜在空间的相应分辨率，以便更好地保存高分辨率的控制信号</p>
+<p>从数学上讲，我们的潜在代码z被分成若干组 <span class="math inline">\(z
+= (z^0 , z^1 ,z^2 ... z^N)\)</span></p>
+<ul>
+<li><p><span class="math inline">\(z^0 \in \mathbb{R}^{c_0}\)</span>
+是一个特征向量</p></li>
+<li><p><span class="math inline">\(z^k \in \mathbb{R}^{c_k\times r_k
+\times r_k}\)</span> 是分辨率不断提高的特征图</p></li>
+<li><p>$r_{k+1}= 2r_k , r_1 =4 $ <span
+class="math inline">\(r_N\)</span>是图像分辨率</p></li>
+</ul>
+<p>因此我们可以分解</p>
+<ul>
+<li>先验概率分布<span
+class="math inline">\(p&#39;(z)\)</span>分解到<span
+class="math inline">\(\prod_{k=0}^N p&#39;(z^k |
+z^{&lt;k})\)</span></li>
+<li>expert <span class="math inline">\(q(z\mid y_i)\)</span> 分解到<span
+class="math inline">\(\prod_{k=0}^N q(z^k | z^{&lt;k} ,
+y_i)\)</span></li>
+</ul>
+<p>这种设计类似于等级VAE中的前后网络。不同之处在于，我们的编码器在输入模式中编码条件信息，而不是图像本身。根据潜在条件分布公式，我们假设每个分辨率的潜在条件分布是expert的产物
+<span class="math display">\[
+p(z^k\mid z^{&lt;k},\mathcal{Y}) \propto p&#39;(z^k |
+z^{&lt;k})\prod_{y_i\in \mathcal{Y}}q(z^k | z^{&lt;k},y_i)
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(p&#39;(z^k | z^{&lt;k}) =
+\mathcal{N}(\mu_0^k,\sigma_0^k)\)</span> 和 $q(z^k | z^{&lt;k},y_i)
+=(_i^k,_i^k) $用神经网络参数化均值和标准差的独立高斯分布</p>
+</blockquote>
+<blockquote>
+<p>可以证明 Product of gaussion experts 同样也是高斯分布 <span
+class="math inline">\(p(z^k\mid z^{&lt;k},\mathcal{Y}) =
+\mathcal{N}(\mu^k,\sigma^k)\)</span></p>
+</blockquote>
+<figure>
+<img src="2.png" alt="poe公式" />
+<figcaption aria-hidden="true">poe公式</figcaption>
+</figure>
+<h2 id="generator-architecture">Generator architecture</h2>
+<h3 id="encoder">1.Encoder</h3>
+<p><img src="3.png" /></p>
+<p>上图为生成器体系结构的概述。我们将每个模态编码成一个特征向量，然后在<strong>Global
+PoE-Net</strong>中进行聚合。</p>
+<ul>
+<li><p>使用卷积网络(with input skip connections
+)对分割图seg和草图sketch进行编码</p></li>
+<li><p>使用residual network对风格图style进行编码</p></li>
+<li><p>使用CLIP去对文本text进行编码</p></li>
+</ul>
+<blockquote>
+<p>附录B中给出了所有模态编码器的详细信息。</p>
+<p>解码器使用Global
+PoE-Net的输出以及<strong>分割编码器</strong>和<strong>草图编码器</strong>的跳过连接生成图像</p>
+</blockquote>
+<h3 id="global-poe-net">2.Global PoE-Net</h3>
+<blockquote>
+<p><span class="math inline">\(\mu
+和\sigma\)</span>下标有0，1，2，3，4</p>
+<p>0表示先验分布 1表示分割编码器 2表示文本编码器 3表示style编码器
+4表示草图编码器</p>
+</blockquote>
+<figure>
+<img src="4.png" alt="截屏2022-03-12 18.54.35" />
+<figcaption aria-hidden="true">截屏2022-03-12 18.54.35</figcaption>
+</figure>
+<p>在Global
+PoE-Net中，我们使用MLP从每个模态中提取特征向量来预测一个高斯分布<span
+class="math inline">\(q(z^0|y_i)=\mathcal{N}(\mu_i^0,\sigma_i^0)\)</span></p>
+<p>然后我们计算product of Gaussion包括$p'(z^0) = (_0^0,_0^0)=(0,I) $</p>
+<p>并从product分布中采样得到<span class="math inline">\(z^0\)</span></p>
+<p>然后用MLP将<span
+class="math inline">\(z^0\)</span>转化为另一个特征向量<span
+class="math inline">\(w\)</span></p>
+<h3 id="decoder">3.Decoder</h3>
+<figure>
+<img src="5.png" alt="截屏2022-03-12 19.06.02" />
+<figcaption aria-hidden="true">截屏2022-03-12 19.06.02</figcaption>
+</figure>
+<p>解码器主要有一堆残差块组成</p>
+<p><strong>Local-PoE-Net</strong>在当前分辨率下对潜在feature map <span
+class="math inline">\(z^k\)</span>进行采样</p>
+<p>当前分辨率下的product</p>
+<p><span class="math inline">\(p&#39;(z^k | z^{&lt;k}) =
+\mathcal{N}(\mu_0^k,\sigma_0^k)\)</span> 特征图zk下的先验分布</p>
+<p><span class="math inline">\(q(z^k | z^{&lt;k},y_i) =
+\mathcal{N}(\mu_i^k,\sigma_i^k)\)</span> 特征图zk下不同模态的分布</p>
+<blockquote>
+<p><span
+class="math inline">\(\mu_0^k,\sigma_0^k\)</span>根据最后一层的输出计算</p>
+<p><span
+class="math inline">\(\mu_i^k,\sigma_i^k\)</span>通过连接最后一层的输出和相应模态的跳过连接来计算</p>
+</blockquote>
+<blockquote>
+<p>请注意，只有具有跳过连接的模式(分割图和草图)对计算作出贡献</p>
+<p>其他模式（文本和style参考）仅提供global信息，而不提供local细节。</p>
+</blockquote>
+<p>local-PoE-net生成的潜在特征映射<span
+class="math inline">\(z^k\)</span>和global-PoE-net生成的特征向量<span
+class="math inline">\(w\)</span>被送到LG AdaIN层</p>
+<p>本地全局自适应实例规范化(LG AdaIN)</p>
+<figure>
+<img src="6.png" alt="截屏2022-03-12 19.26.40" />
+<figcaption aria-hidden="true">截屏2022-03-12 19.26.40</figcaption>
+</figure>
+<figure>
+<img src="7.png" alt="截屏2022-03-12 19.22.27" />
+<figcaption aria-hidden="true">截屏2022-03-12 19.22.27</figcaption>
+</figure>
+<ul>
+<li><p><span
+class="math inline">\(h^k\)</span>是在残差分支中通过一个卷积层得到的一个feature
+map</p></li>
+<li><p>μ(hk) and σ(hk) 是通道平均值和标准差</p></li>
+<li><p><span class="math inline">\(\beta_{z^k} , \gamma_{z^k}\)</span>
+由<span class="math inline">\(z^k\)</span>通过一个1x1卷积得到</p></li>
+<li><p><span class="math inline">\(\beta_{w} ,
+\gamma_{w}\)</span>由w计算得到</p></li>
+</ul>
+<blockquote>
+<p>LG-AdaIN可以被看作AdaIN和SPADE的组合
+采用<strong>全局特征向量</strong>和<strong>空间变化特征映射</strong>来调节激活。</p>
+</blockquote>
+<h2
+id="multiscale-multimodal-projection-discriminator多尺度多模投影鉴别器">Multiscale
+multimodal projection discriminator（多尺度多模投影鉴别器）</h2>
+<blockquote>
+<p>输入：</p>
+<ul>
+<li>image x</li>
+<li>一系列的条件 <span class="math inline">\(\mathcal{Y}\)</span></li>
+</ul>
+<p>输出：</p>
+<p>一个分数<span class="math inline">\(D(x,\mathcal{Y}) =
+sigmoid(f(x,\mathcal{Y}))\)</span>表明真实性</p>
+<p>f的最优解是</p>
+<figure>
+<img src="8.png" alt="截屏2022-03-12 19.49.05" />
+<figcaption aria-hidden="true">截屏2022-03-12 19.49.05</figcaption>
+</figure>
+</blockquote>
+<p>我们假设给出x的不同模态下的条件独立,投影鉴别器（PD）（估计是一篇论文里的方法）建议使用<strong>内积</strong>来估计条件变量,他的实施将有条件的期限限制为,要相对简单，这会产生一个很好的归纳偏差，从而产生很强的实证结果。
+<img src="9.png" alt="截屏2022-03-12 19.30.31" /></p>
+<p>原始的PD</p>
+<ul>
+<li>首先将图像和条件一起输入到一个<strong>shared latent
+space</strong>（潜在共享空间）</li>
+<li>然后使用一个<strong>线性层</strong>来估计图像嵌入的<strong>无条件项（unconditional
+term）</strong></li>
+<li>并使用图像嵌入和条件嵌入之间的<strong>内积</strong>来估计<strong>条件项(conditional
+term)</strong>。</li>
+<li>将<strong>无条件项</strong>和<strong>条件项</strong>相加，以获得最终的鉴别器的结果</li>
+</ul>
+<blockquote>
+<p>相当于PD的推广</p>
+<p>我们提出了一种多模态投影判别器，它将投影判别器推广到处理多个条件输入。与计算图像嵌入和条件嵌入之间的单个内积的标准投影判别器不同，我们为每个输入模态计算一个内积并将它们加在一起以获得最终损失。</p>
+</blockquote>
+<figure>
+<img src="10.png" alt="截屏2022-03-12 19.58.40" />
+<figcaption aria-hidden="true">截屏2022-03-12 19.58.40</figcaption>
+</figure>
+<p><span class="math display">\[
+f(x,\mathcal{Y}) = Linear(D_x(x)) = \sum_{y_i \in \mathcal{Y}}
+D_{y_i}^T(y_i)D_x(x)
+\]</span></p>
+<p>对于分割和草图等空间模式，在多个尺度下加强它们与图像的对齐更有效。</p>
+<p>如图所示，我们将图像和空间模式编码为不同解决方案的特征图，并计算每个分辨率下的MPD损失。</p>
+<p>我们计算每个位置和分辨率的损失值，然后通过先对位置进行平均，然后再对分辨率进行平均，得到最终损失。</p>
+<p>我们将产生的鉴别器命名为多尺度多模投影鉴别器（MMPD），并在附录B中描述其细节</p>
+<figure>
+<img src="11.png" alt="截屏2022-03-12 19.59.36" />
+<figcaption aria-hidden="true">截屏2022-03-12 19.59.36</figcaption>
+</figure>
+<h2 id="losses-and-training-procedure">Losses and training
+procedure</h2>
+<h3 id="section"></h3>
+<h3 id="latent-regularization">Latent regularization</h3>
+<p>在product-of-experts的假设下
+他认为<strong>有条件的潜在分布</strong>应该与<strong>无条件的先验分布</strong>相匹配</p>
+<figure>
+<img src="12.png" alt="截屏2022-03-15 10.34.41" />
+<figcaption aria-hidden="true">截屏2022-03-15 10.34.41</figcaption>
+</figure>
+<p>我们<strong>最小化</strong>在每个分辨率下<strong>有条件的潜在分布</strong><span
+class="math inline">\(p(z|y_i)\)</span>和<strong>无条件的先验分布</strong><span
+class="math inline">\(p&#39;(z)\)</span>的KL散度</p>
+<figure>
+<img src="13.png" alt="截屏2022-03-15 10.37.50" />
+<figcaption aria-hidden="true">截屏2022-03-15 10.37.50</figcaption>
+</figure>
+<ul>
+<li><span
+class="math inline">\(w_k\)</span>是分辨率相关的再平衡权重</li>
+<li><span class="math inline">\(w_i\)</span>是一个特定误差权重</li>
+</ul>
+<blockquote>
+<p>KL损失也减少了条件模式崩溃，因为它鼓励条件潜在分布接近先验分布，因此具有高熵。</p>
+<p>从信息瓶颈的角度来看，KL损失鼓励每个模态只提供指定条件图像分布所需的最小信息。</p>
+</blockquote>
+<h3 id="contrastive-losses">Contrastive losses</h3>
+<p>对比损失在<strong>表示学习</strong>中得到了广泛的应用，最近应用到图像合成</p>
+<p>给定一批配对向量<span class="math inline">\((u,v) = \left\{
+(u_i,v_i), i =1,2,3...N\right\}\)</span></p>
+<p>对称性交叉熵损失 最大化成对向量的相似性，同时分开 非成对向量</p>
+<figure>
+<img src="14.png" alt="截屏2022-03-15 10.46.34" />
+<figcaption aria-hidden="true">截屏2022-03-15 10.46.34</figcaption>
+</figure>
+<p>我们使用两种配对来构造两个对比损失项：<strong>图像对比损失</strong>和<strong>条件对比损失</strong></p>
+<h4 id="图像对比损失">图像对比损失</h4>
+<p>可最大化<strong>真实图像</strong>与<strong>基于条件生成的图像</strong>的相似性
+<span class="math display">\[
+\mathcal{L}_{cx} = \mathcal{L}^{ce}(E_{vgg}(x) , E_{vgg}(\bar{x}))
+\]</span></p>
+<h4 id="条件对比损失">条件对比损失</h4>
+<blockquote>
+<p>条件对比损失可以更好地使图像与相应的条件一致。</p>
+</blockquote>
+<h5
+id="对识别器进行训练以最大化真实图像x的嵌入和条件输入之间的相似性">对识别器进行训练，以最大化真实图像X的嵌入和条件输入之间的相似性</h5>
+<ul>
+<li>辨别器的条件对比损失</li>
+</ul>
+<p><span class="math display">\[
+\mathcal{L}_{cy}^D = \mathcal{L}^{ce}(D_x(x) , D_{y_i}(\mathcal{Y}_i))
+\]</span></p>
+<blockquote>
+<p>其中，Dx和Dy分别是鉴别器中的两个模块，分别从x和y_i中提取特征</p>
+</blockquote>
+<h5
+id="生成器使用相同的损失进行训练但使用生成的图像barx代替真实图像x来计算鉴别器嵌入">生成器使用相同的损失进行训练，但使用生成的图像<span
+class="math inline">\(\bar{x}\)</span>代替真实图像x来计算鉴别器嵌入</h5>
+<ul>
+<li>生成器的条件对比损失</li>
+</ul>
+<p><span class="math display">\[
+\mathcal{L}_{cy}^G = \mathcal{L}^{ce}(D_x(\bar{x}) ,
+D_{y_i}(\mathcal{Y}_i))
+\]</span></p>
+<blockquote>
+<p>在实践中，我们只对<strong>文本模式</strong>使用条件对比损失，因为它消耗了太多的GPU内存，而对其他模式使用条件对比损失，尤其是在图像分辨率和批量较大的情况下。</p>
+</blockquote>
+<h3 id="full-training-objective">Full training objective</h3>
+<p>总的LOSS包含生成器LOSS和辨别器LOSS</p>
+<figure>
+<img src="15.png" alt="image-20220315125032385" />
+<figcaption aria-hidden="true">image-20220315125032385</figcaption>
+</figure>
+<ul>
+<li><span class="math inline">\(\mathcal{L}^G 和
+\mathcal{L}^D\)</span>是非饱和GAN损失</li>
+<li><span
+class="math inline">\(\mathcal{L}_{GP}\)</span>是R1梯度惩罚损失</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">扁同学不发言</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/05/04/GanGANv2/">http://example.com/2022/05/04/GanGANv2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">扁同学不发言的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90/">图像生成</a><a class="post-meta__tags" href="/tags/GAN/">GAN</a><a class="post-meta__tags" href="/tags/cs-CV/">cs.CV</a><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></div><div class="post_share"><div class="social-share" data-image="/2022/05/04/GanGANv2/3.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/04/informative-drawing/"><img class="prev-cover" src="/2022/05/04/informative-drawing/1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">informative-drawing</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/04/ChipGAN/"><img class="next-cover" src="/2022/05/04/ChipGAN/fig1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ChipGAN</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/04/informative-drawing/" title="informative-drawing"><img class="cover" src="/2022/05/04/informative-drawing/1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">informative-drawing</div></div></a></div><div><a href="/2022/05/04/ChipGAN/" title="ChipGAN"><img class="cover" src="/2022/05/04/ChipGAN/fig1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">ChipGAN</div></div></a></div><div><a href="/2022/05/04/MGUIT/" title="MGUIT"><img class="cover" src="/2022/05/04/MGUIT/1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">MGUIT</div></div></a></div><div><a href="/2022/05/04/Image%20Style%20Transfer/" title="Image Style Transfer"><img class="cover" src="/2022/05/04/Image%20Style%20Transfer/fig1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">Image Style Transfer</div></div></a></div><div><a href="/2022/05/04/MASA-SR/" title="MASA-SR"><img class="cover" src="https://pic1.zhimg.com/v2-3486f59df8faa40673ddcbe4f5212844_1440w.jpg?source=172ae18b" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">MASA-SR</div></div></a></div><div><a href="/2022/05/04/PLST-SR/" title="Perceptual Losses for Real-Time Style Transfer and Super-Resolution"><img class="cover" src="https://pic4.zhimg.com/v2-8e9936fdcfd4e8371720b9834f8f97d7_r.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">Perceptual Losses for Real-Time Style Transfer and Super-Resolution</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E6%96%B0%E4%B8%80.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">扁同学不发言</div><div class="author-info__description">AIArt@HDU</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Larry-zx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Larry-zx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/larry-19-22-31" target="_blank" title="Zhihu"><i class="fa-brands fa-zhihu"></i></a><a class="social-icon" href="https://mobile.twitter.com/Larry37722397" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a><a class="social-icon" href="https://www.youtube.com/channel/UCzDXYobI-mUP5WgvA37er6A" target="_blank" title="Youtube"><i class="fa-brands fa-youtube"></i></a><a class="social-icon" href="https://www.kaggle.com/larryzxai" target="_blank" title="Kaggle"><i class="fa-brands fa-kaggle"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hi , welcome to my blog 🤔</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#product-of-experts-gans"><span class="toc-text">Product-of-experts GANs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#product-of-experts-modeling"><span class="toc-text">Product-of-experts modeling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#multiscale-and-hierarchical-latent-space%E5%A4%9A%E5%B0%BA%E5%BA%A6%E5%B1%82%E6%AC%A1%E6%BD%9C%E5%9C%A8%E7%A9%BA%E9%97%B4"><span class="toc-text">Multiscale
+and hierarchical latent space（多尺度层次潜在空间）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generator-architecture"><span class="toc-text">Generator architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#encoder"><span class="toc-text">1.Encoder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#global-poe-net"><span class="toc-text">2.Global PoE-Net</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#decoder"><span class="toc-text">3.Decoder</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#multiscale-multimodal-projection-discriminator%E5%A4%9A%E5%B0%BA%E5%BA%A6%E5%A4%9A%E6%A8%A1%E6%8A%95%E5%BD%B1%E9%89%B4%E5%88%AB%E5%99%A8"><span class="toc-text">Multiscale
+multimodal projection discriminator（多尺度多模投影鉴别器）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#losses-and-training-procedure"><span class="toc-text">Losses and training
+procedure</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#section"><span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#latent-regularization"><span class="toc-text">Latent regularization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#contrastive-losses"><span class="toc-text">Contrastive losses</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%AF%B9%E6%AF%94%E6%8D%9F%E5%A4%B1"><span class="toc-text">图像对比损失</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%AF%B9%E6%AF%94%E6%8D%9F%E5%A4%B1"><span class="toc-text">条件对比损失</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E8%AF%86%E5%88%AB%E5%99%A8%E8%BF%9B%E8%A1%8C%E8%AE%AD%E7%BB%83%E4%BB%A5%E6%9C%80%E5%A4%A7%E5%8C%96%E7%9C%9F%E5%AE%9E%E5%9B%BE%E5%83%8Fx%E7%9A%84%E5%B5%8C%E5%85%A5%E5%92%8C%E6%9D%A1%E4%BB%B6%E8%BE%93%E5%85%A5%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9B%B8%E4%BC%BC%E6%80%A7"><span class="toc-text">对识别器进行训练，以最大化真实图像X的嵌入和条件输入之间的相似性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%90%8C%E7%9A%84%E6%8D%9F%E5%A4%B1%E8%BF%9B%E8%A1%8C%E8%AE%AD%E7%BB%83%E4%BD%86%E4%BD%BF%E7%94%A8%E7%94%9F%E6%88%90%E7%9A%84%E5%9B%BE%E5%83%8Fbarx%E4%BB%A3%E6%9B%BF%E7%9C%9F%E5%AE%9E%E5%9B%BE%E5%83%8Fx%E6%9D%A5%E8%AE%A1%E7%AE%97%E9%89%B4%E5%88%AB%E5%99%A8%E5%B5%8C%E5%85%A5"><span class="toc-text">生成器使用相同的损失进行训练，但使用生成的图像\(\bar{x}\)代替真实图像x来计算鉴别器嵌入</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#full-training-objective"><span class="toc-text">Full training objective</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/MASA-SR/" title="MASA-SR"><img src="https://pic1.zhimg.com/v2-3486f59df8faa40673ddcbe4f5212844_1440w.jpg?source=172ae18b" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MASA-SR"/></a><div class="content"><a class="title" href="/2022/05/04/MASA-SR/" title="MASA-SR">MASA-SR</a><time datetime="2022-05-04T07:58:52.000Z" title="发表于 2022-05-04 15:58:52">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/informative-drawing/" title="informative-drawing"><img src="/2022/05/04/informative-drawing/1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="informative-drawing"/></a><div class="content"><a class="title" href="/2022/05/04/informative-drawing/" title="informative-drawing">informative-drawing</a><time datetime="2022-05-04T07:56:42.000Z" title="发表于 2022-05-04 15:56:42">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/GanGANv2/" title="GanGANv2"><img src="/2022/05/04/GanGANv2/3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GanGANv2"/></a><div class="content"><a class="title" href="/2022/05/04/GanGANv2/" title="GanGANv2">GanGANv2</a><time datetime="2022-05-04T07:31:06.000Z" title="发表于 2022-05-04 15:31:06">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/ChipGAN/" title="ChipGAN"><img src="/2022/05/04/ChipGAN/fig1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ChipGAN"/></a><div class="content"><a class="title" href="/2022/05/04/ChipGAN/" title="ChipGAN">ChipGAN</a><time datetime="2022-05-04T07:21:07.000Z" title="发表于 2022-05-04 15:21:07">2022-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/04/MGUIT/" title="MGUIT"><img src="/2022/05/04/MGUIT/1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MGUIT"/></a><div class="content"><a class="title" href="/2022/05/04/MGUIT/" title="MGUIT">MGUIT</a><time datetime="2022-05-04T07:19:48.000Z" title="发表于 2022-05-04 15:19:48">2022-05-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By 扁同学不发言</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="#">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://example.com/2022/05/04/GanGANv2/'
+    this.page.identifier = '2022/05/04/GanGANv2/'
+    this.page.title = 'GanGANv2'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+}
+
+if ('Valine' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
