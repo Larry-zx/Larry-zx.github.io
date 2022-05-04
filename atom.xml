@@ -3,11 +3,11 @@
   <title>扁同学不发言的个人博客</title>
   
   
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="http://www.larryai.com/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="http://www.larryai.com/"/>
   <updated>2022-05-04T08:03:00.875Z</updated>
-  <id>http://example.com/</id>
+  <id>http://www.larryai.com/</id>
   
   <author>
     <name>扁同学不发言</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>MASA-SR</title>
-    <link href="http://example.com/2022/05/04/MASA-SR/"/>
-    <id>http://example.com/2022/05/04/MASA-SR/</id>
+    <link href="http://www.larryai.com/2022/05/04/MASA-SR/"/>
+    <id>http://www.larryai.com/2022/05/04/MASA-SR/</id>
     <published>2022-05-04T07:58:52.000Z</published>
     <updated>2022-05-04T08:03:00.875Z</updated>
     
@@ -37,21 +37,21 @@ src=&quot;https://pic1.zhimg.com/v2-3486f59df8faa40673ddcbe4f5212844_1440w.jpg?s
     
     
     
-    <category term="论文笔记" scheme="http://example.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    <category term="论文笔记" scheme="http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="cs.CV" scheme="http://example.com/tags/cs-CV/"/>
+    <category term="cs.CV" scheme="http://www.larryai.com/tags/cs-CV/"/>
     
-    <category term="深度学习" scheme="http://example.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    <category term="深度学习" scheme="http://www.larryai.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-    <category term="超分重建" scheme="http://example.com/tags/%E8%B6%85%E5%88%86%E9%87%8D%E5%BB%BA/"/>
+    <category term="超分重建" scheme="http://www.larryai.com/tags/%E8%B6%85%E5%88%86%E9%87%8D%E5%BB%BA/"/>
     
   </entry>
   
   <entry>
     <title>informative-drawing</title>
-    <link href="http://example.com/2022/05/04/informative-drawing/"/>
-    <id>http://example.com/2022/05/04/informative-drawing/</id>
+    <link href="http://www.larryai.com/2022/05/04/informative-drawing/"/>
+    <id>http://www.larryai.com/2022/05/04/informative-drawing/</id>
     <published>2022-05-04T07:56:42.000Z</published>
     <updated>2022-05-04T07:59:24.408Z</updated>
     
@@ -67,23 +67,23 @@ to generate line drawings that convey geometry and s</summary>
     
     
     
-    <category term="论文笔记" scheme="http://example.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    <category term="论文笔记" scheme="http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="图像生成" scheme="http://example.com/tags/%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90/"/>
+    <category term="图像生成" scheme="http://www.larryai.com/tags/%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90/"/>
     
-    <category term="GAN" scheme="http://example.com/tags/GAN/"/>
+    <category term="GAN" scheme="http://www.larryai.com/tags/GAN/"/>
     
-    <category term="cs.CV" scheme="http://example.com/tags/cs-CV/"/>
+    <category term="cs.CV" scheme="http://www.larryai.com/tags/cs-CV/"/>
     
-    <category term="深度学习" scheme="http://example.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    <category term="深度学习" scheme="http://www.larryai.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>GanGANv2</title>
-    <link href="http://example.com/2022/05/04/GanGANv2/"/>
-    <id>http://example.com/2022/05/04/GanGANv2/</id>
+    <link href="http://www.larryai.com/2022/05/04/GanGANv2/"/>
+    <id>http://www.larryai.com/2022/05/04/GanGANv2/</id>
     <published>2022-05-04T07:31:06.000Z</published>
     <updated>2022-05-04T07:54:18.696Z</updated>
     
@@ -103,23 +103,23 @@ to generate line drawings that convey geometry and s</summary>
     
     
     
-    <category term="论文笔记" scheme="http://example.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    <category term="论文笔记" scheme="http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="图像生成" scheme="http://example.com/tags/%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90/"/>
+    <category term="图像生成" scheme="http://www.larryai.com/tags/%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90/"/>
     
-    <category term="GAN" scheme="http://example.com/tags/GAN/"/>
+    <category term="GAN" scheme="http://www.larryai.com/tags/GAN/"/>
     
-    <category term="cs.CV" scheme="http://example.com/tags/cs-CV/"/>
+    <category term="cs.CV" scheme="http://www.larryai.com/tags/cs-CV/"/>
     
-    <category term="深度学习" scheme="http://example.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    <category term="深度学习" scheme="http://www.larryai.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>ChipGAN</title>
-    <link href="http://example.com/2022/05/04/ChipGAN/"/>
-    <id>http://example.com/2022/05/04/ChipGAN/</id>
+    <link href="http://www.larryai.com/2022/05/04/ChipGAN/"/>
+    <id>http://www.larryai.com/2022/05/04/ChipGAN/</id>
     <published>2022-05-04T07:21:07.000Z</published>
     <updated>2022-05-04T07:39:16.611Z</updated>
     
@@ -136,23 +136,23 @@ end-to-end）生成对抗性网络体</summary>
     
     
     
-    <category term="论文笔记" scheme="http://example.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    <category term="论文笔记" scheme="http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="风格迁移" scheme="http://example.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
+    <category term="风格迁移" scheme="http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
     
-    <category term="图像生成" scheme="http://example.com/tags/%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90/"/>
+    <category term="图像生成" scheme="http://www.larryai.com/tags/%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90/"/>
     
-    <category term="GAN" scheme="http://example.com/tags/GAN/"/>
+    <category term="GAN" scheme="http://www.larryai.com/tags/GAN/"/>
     
-    <category term="cs.CV" scheme="http://example.com/tags/cs-CV/"/>
+    <category term="cs.CV" scheme="http://www.larryai.com/tags/cs-CV/"/>
     
   </entry>
   
   <entry>
     <title>MGUIT</title>
-    <link href="http://example.com/2022/05/04/MGUIT/"/>
-    <id>http://example.com/2022/05/04/MGUIT/</id>
+    <link href="http://www.larryai.com/2022/05/04/MGUIT/"/>
+    <id>http://www.larryai.com/2022/05/04/MGUIT/</id>
     <published>2022-05-04T07:19:48.000Z</published>
     <updated>2022-05-04T07:39:26.647Z</updated>
     
@@ -169,23 +169,23 @@ end-to-end）生成对抗性网络体</summary>
     
     
     
-    <category term="论文笔记" scheme="http://example.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    <category term="论文笔记" scheme="http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="风格迁移" scheme="http://example.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
+    <category term="风格迁移" scheme="http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
     
-    <category term="GAN" scheme="http://example.com/tags/GAN/"/>
+    <category term="GAN" scheme="http://www.larryai.com/tags/GAN/"/>
     
-    <category term="cs.CV" scheme="http://example.com/tags/cs-CV/"/>
+    <category term="cs.CV" scheme="http://www.larryai.com/tags/cs-CV/"/>
     
-    <category term="深度学习" scheme="http://example.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    <category term="深度学习" scheme="http://www.larryai.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>线性链表</title>
-    <link href="http://example.com/2022/05/04/%E7%BA%BF%E6%80%A7%E9%93%BE%E8%A1%A8/"/>
-    <id>http://example.com/2022/05/04/%E7%BA%BF%E6%80%A7%E9%93%BE%E8%A1%A8/</id>
+    <link href="http://www.larryai.com/2022/05/04/%E7%BA%BF%E6%80%A7%E9%93%BE%E8%A1%A8/"/>
+    <id>http://www.larryai.com/2022/05/04/%E7%BA%BF%E6%80%A7%E9%93%BE%E8%A1%A8/</id>
     <published>2022-05-04T07:15:02.000Z</published>
     <updated>2022-05-04T07:15:30.981Z</updated>
     
@@ -203,17 +203,17 @@ end-to-end）生成对抗性网络体</summary>
     
     
     
-    <category term="数据结构" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    <category term="数据结构" scheme="http://www.larryai.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     
-    <category term="C++" scheme="http://example.com/tags/C/"/>
+    <category term="C++" scheme="http://www.larryai.com/tags/C/"/>
     
   </entry>
   
   <entry>
     <title>顺序表</title>
-    <link href="http://example.com/2022/05/04/%E9%A1%BA%E5%BA%8F%E8%A1%A8/"/>
-    <id>http://example.com/2022/05/04/%E9%A1%BA%E5%BA%8F%E8%A1%A8/</id>
+    <link href="http://www.larryai.com/2022/05/04/%E9%A1%BA%E5%BA%8F%E8%A1%A8/"/>
+    <id>http://www.larryai.com/2022/05/04/%E9%A1%BA%E5%BA%8F%E8%A1%A8/</id>
     <published>2022-05-04T03:37:36.000Z</published>
     <updated>2022-05-04T07:14:49.099Z</updated>
     
@@ -231,17 +231,17 @@ end-to-end）生成对抗性网络体</summary>
     
     
     
-    <category term="数据结构" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    <category term="数据结构" scheme="http://www.larryai.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     
-    <category term="C++" scheme="http://example.com/tags/C/"/>
+    <category term="C++" scheme="http://www.larryai.com/tags/C/"/>
     
   </entry>
   
   <entry>
     <title>Perceptual Losses for Real-Time Style Transfer and Super-Resolution</title>
-    <link href="http://example.com/2022/05/04/PLST-SR/"/>
-    <id>http://example.com/2022/05/04/PLST-SR/</id>
+    <link href="http://www.larryai.com/2022/05/04/PLST-SR/"/>
+    <id>http://www.larryai.com/2022/05/04/PLST-SR/</id>
     <published>2022-05-03T18:56:42.000Z</published>
     <updated>2022-05-04T07:37:36.967Z</updated>
     
@@ -259,23 +259,23 @@ src=&quot;https://pic4.zhimg.com/v2-8e9936fdcfd4e8371720b9834f8f97d7_r.jpg&quot;
     
     
     
-    <category term="论文笔记" scheme="http://example.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    <category term="论文笔记" scheme="http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="风格迁移" scheme="http://example.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
+    <category term="风格迁移" scheme="http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
     
-    <category term="cs.CV" scheme="http://example.com/tags/cs-CV/"/>
+    <category term="cs.CV" scheme="http://www.larryai.com/tags/cs-CV/"/>
     
-    <category term="深度学习" scheme="http://example.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    <category term="深度学习" scheme="http://www.larryai.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-    <category term="超分重建" scheme="http://example.com/tags/%E8%B6%85%E5%88%86%E9%87%8D%E5%BB%BA/"/>
+    <category term="超分重建" scheme="http://www.larryai.com/tags/%E8%B6%85%E5%88%86%E9%87%8D%E5%BB%BA/"/>
     
   </entry>
   
   <entry>
     <title>Image Style Transfer</title>
-    <link href="http://example.com/2022/05/04/Image%20Style%20Transfer/"/>
-    <id>http://example.com/2022/05/04/Image%20Style%20Transfer/</id>
+    <link href="http://www.larryai.com/2022/05/04/Image%20Style%20Transfer/"/>
+    <id>http://www.larryai.com/2022/05/04/Image%20Style%20Transfer/</id>
     <published>2022-05-03T18:54:56.000Z</published>
     <updated>2022-05-04T07:37:16.704Z</updated>
     
@@ -294,23 +294,23 @@ src=&quot;https://pic4.zhimg.com/v2-8e9936fdcfd4e8371720b9834f8f97d7_r.jpg&quot;
     
     
     
-    <category term="论文笔记" scheme="http://example.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    <category term="论文笔记" scheme="http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="风格迁移" scheme="http://example.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
+    <category term="风格迁移" scheme="http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
     
-    <category term="cs.CV" scheme="http://example.com/tags/cs-CV/"/>
+    <category term="cs.CV" scheme="http://www.larryai.com/tags/cs-CV/"/>
     
-    <category term="深度学习" scheme="http://example.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    <category term="深度学习" scheme="http://www.larryai.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>Transformer</title>
-    <link href="http://example.com/2022/05/04/transformer/"/>
-    <id>http://example.com/2022/05/04/transformer/</id>
+    <link href="http://www.larryai.com/2022/05/04/transformer/"/>
+    <id>http://www.larryai.com/2022/05/04/transformer/</id>
     <published>2022-05-03T18:42:20.000Z</published>
-    <updated>2022-05-04T07:36:58.784Z</updated>
+    <updated>2022-05-04T08:30:58.490Z</updated>
     
     <content type="html"><![CDATA[<h1 id="abstract">Abstract</h1><p>主要的序列转导模型基于复杂的循环或卷积神经网络，包括编码器和解码器。</p><p>性能最好的模型还通过注意力机制连接编码器和解码器。</p><p>我们提出了一种新的简单网络架构 <strong>Transformer</strong></p><p><strong>它完全基于注意力机制，完全摒弃了递归和卷积</strong></p><p>对两个机器翻译任务的实验表明，这些模型在质量上更优越，同时更可并行化，并且需要的训练时间显着减少。</p><ul><li>我们的模型在 WMT 2014 英德翻译任务上达到了 28.4BLEU，比现有的最佳结果（包括合奏）提高了 2 BLEU 以上。</li><li>在 WMT 2014 英语到法语翻译任务中，我们的模型在 8 个 GPU 上训练 3.5天后，建立了一个新的单模型 state-of-the-art BLEU 得分41.0，这是最好的训练成本的一小部分 文献中的模型。</li></ul><h1 id="introduction">1.Introduction</h1><p>循环神经网络(RNN)、长短期记忆(LSTM)和门控循环神经网络，尤其是在语言建模和机器翻译等序列建模和转导问题已被牢固确立为最先进的方法此后，许多努力继续推动循环语言模型和编码器-解码器架构的界限</p><p>循环模型通常沿输入和输出序列的符号位置考虑计算。</p><p>将位置与计算时间的步骤对齐，它们生成一系列隐藏状态ht，作为先前隐藏状态 ht-1 和位置 t 的输入的函数。</p><p>这种固有的顺序性质排除了训练示例中的并行化，这在更长的序列长度下变得至关重要，因为内存限制限制了示例之间的批处理。</p><p>最近的工作通过因式分解技巧 和条件计算显着提高了计算效率，同时在后者的情况下也提高了模型性能。</p><p>然而，顺序计算的基本约束仍然存在。</p><p>注意机制已成为各种任务中引人注目的序列建模和转导模型的组成部分，允许对依赖项进行建模，而无需考虑它们在输入或输出序列中的距离</p><p>然而，除了少数情况，这种注意力机制与循环网络结合使用。</p><p>在这项工作中，我们提出了<strong>Transformer，这是一种避免重复的模型架构，而是完全依赖注意力机制来绘制输入和输出之间的全局依赖关系</strong></p><p>在八个 P100 GPU 上经过短短 12 小时的训练后，Transformer可以实现更多的并行化，并且可以在翻译质量方面达到新的水平</p><h1 id="background">2.Background</h1><p>减少顺序计算的目标也构成了扩展神经 GPU 、ByteNet 和 ConvS2S的基础，所有这些都使用卷积神经网络作为基本构建块，并行计算所有输入的隐藏表示和输出位置。</p><p>在这些模型中，关联来自两个任意输入或输出位置的信号所需的操作数量随着位置之间的距离而增长</p><p>对于 ConvS2S 呈线性增长，而对于 ByteNet 则呈对数增长。</p><p>这使得学习远距离位置之间的依赖关系变得更加困难</p><p>在 Transformer中，这被减少到恒定数量的操作，尽管由于平均注意力加权位置而降低了有效分辨率，我们使用<strong>多头注意力(Multi-HeadAttention)</strong>来抵消这种影响</p><p><strong>自注意力(Self-attention)</strong>，有时称为内部注意力，是一种将单个序列的不同位置关联起来以计算序列表示的注意力机制</p><p>自注意力已成功用于各种任务，包括阅读理解、抽象摘要、文本蕴涵和学习任务无关的句子表示</p><p><strong>端到端记忆网络(End-to-end memorynetwork)</strong>基于循环注意机制而不是序列对齐循环，并且已被证明在简单语言问答和语言建模任务中表现良好</p><p>然而，据我们所知</p><p><strong>Transformer是第一个完全依赖自注意力来计算其输入和输出表示而不使用序列对齐 RNN或卷积的转换模型</strong></p><p>在接下来的部分中，我们将描述Transformer，激发自注意力并讨论其相对于其他模型的优势</p><h1 id="model-architecture">3.Model Architecture</h1><p>大多数竞争性神经序列转导模型具有编码器-解码器结构</p><p>编码器将符号表示的输入序列 (x1, ..., xn) 映射到连续表示的序列 z =(z1, ..., zn)</p><blockquote><p>其中z1是一个向量 用一个向量来表示x1</p></blockquote><p>给定 z，解码器然后一次生成一个元素的符号输出序列 (y1, ..., ym)</p><p>在每个步骤中，模型都是自回归(auto-regressive)的,<strong><em>在生成下一个时将先前生成的符号用作附加输入</em></strong></p><p>Transformer遵循这种整体架构，对编码器和解码器使用堆叠的自注意力(self-attention)和point-wise</p><p>编码器和解码器的全连接层，分别如图 1 的左半部分和右半部分所示</p><p><img src="fig1.png" alt="结构图" style="zoom:100%;" /></p><h2 id="encoder-and-decoder-stacks">3.1Encoder and Decoder Stacks</h2><h4 id="encoder">3.1.1Encoder</h4><p>编码器由 N = 6 个相同的层组成 , 每层有两个子层</p><ul><li><p>第一个子层是 <strong>多头自注意力机制(multi-head self-attentionmechanism)</strong></p></li><li><p>第二个子层是simple, position-wise fully connected feed-forwardnetwork.（说简单点就是<strong>MLP</strong>）</p></li></ul><p>我们在两个子层中的每一个周围使用残差连接，然后进行层归一化</p><p>即每个子层的输出为<strong>LayerNorm(x + Sublayer(x))</strong></p><p>其中Sublayer(x)是子层自己实现的函数</p><p>为了促进这些残差连接，模型中的所有子层以及嵌入层都会产生维度 dmodel =512 的输出</p><blockquote><p>LayerNorm的细节可以参考下面链接</p><p>https://blog.csdn.net/jump882/article/details/119795466</p></blockquote><h4 id="decoder">3.1.1Decoder</h4><p>解码器也由一堆 N = 6 个相同的层组成。</p><p>除了每个编码器层中的两个子层之外，解码器还插入了第三个子层</p><p>该子层对编码器堆栈的输出执行多头注意力（multi-head attention）</p><p>与编码器类似，我们在每个子层周围使用残差连接，然后进行层归一化</p><p>我们还修改了解码器堆栈中的自注意力子层，以<strong>防止位置关注后续位置</strong></p><p><strong>这种掩蔽与输出嵌入偏移一个位置的事实相结合，确保对位置 i的预测只能依赖于位置小于 i 的已知输出</strong></p><h2 id="attention">3.2Attention</h2><p>注意力函数可以描述为将aquery(查询)和一组key-value键值对映射到输出</p><p>其中<strong>查询query</strong>、<strong>键key</strong>、<strong>值value</strong>和<strong>输出</strong>都是向量</p><p><strong>输出可以理解为计算值value的加权和所得</strong></p><p>其中<strong>分配给每个value的权重weight由查询query与相应键key的相似度函数计算</strong></p><p>下面给了一张参考图</p><p><img src="attention1.png" /></p><h4 id="scaled-dot-product-attention">3.2.1 Scaled Dot-ProductAttention</h4><figure><img src="fig2_left.png" alt="attention" /><figcaption aria-hidden="true">attention</figcaption></figure><p>我们将我们的particular attention称为“Scaled Dot-ProductAttention”</p><p>输入由维度 dk 的query和key以及维度 dv 的value组成</p><p><strong>我们计算的query和所有keys的点积，将每个key除以 <spanclass="math inline">\(\sqrt{d_k}\)</span>，然后应用 softmax函数来获得value的权重</strong></p><p>在实践中，我们同时计算一组querys的注意力函数，并打包到矩阵 Q 中</p><p>key和value也打包到矩阵 K 和 V 中</p><p>我们将输出矩阵计算为： <span class="math display">\[Attention(Q,K,V) = softmax(\frac{QK^T}{\sqrt{d_k}})V\]</span> 下面给了一张参考图 当m=1时就跟单独运算一样</p><p><img src="attention2.png" /></p><p>两个最常用的注意功能是</p><ul><li><p>加性注意 （additive attention ）</p></li><li><p>点积（乘法）注意（dot-product (multiplicative)attention）</p></li></ul><p>点积注意力与我们的算法相同，除了 <spanclass="math inline">\(\sqrt{d_k}\)</span> 的比例因子</p><p>Additive attention使用具有单个隐藏层的前馈网络计算兼容性函数</p><p>虽然两者在理论上的复杂性相似，但<strong>点积注意力在实践中更快且更节省空</strong>间，因为它可以使用高度优化的矩阵乘法代码来实现</p><p>虽然对于较小的 dk值，这两种机制的性能相似，但加法注意力优于点积注意力，而无需对较大的 dk值进行缩放</p><p>我们怀疑对于较大的 dk 值，点积的幅度会变大，从而将 softmax函数推入具有极小梯度的区域</p><p>为了抵消这种影响，我们将点积缩放<spanclass="math inline">\(\sqrt{d_k}\)</span></p><blockquote><p>注意Mask部分具体操作就是将qt之后的值给换成一个非常大的负数，在后续的softmax时候就会变成0</p><p>使得计算结果只用到了v1到vt-1的结果</p></blockquote><h4 id="multi-head-attention">3.2.2 Multi-Head Attention</h4><figure><img src="fig2_right.png" alt="attention" /><figcaption aria-hidden="true">attention</figcaption></figure><p>与使用 dmodel维度的key、value和query执行单个注意函数不同</p><p>我们发现将查询、键和值分别线性投影到 dk、dk 和 dv维度上的不同学习线性投影是有益的（投影到低维度）</p><blockquote><p>相当于给h次机会 希望能够学到不一样的投影的方式</p><p>使得在投影进去的度量空间里面 能够去匹配不同模式的相似函数</p><p>类似卷积神经网络中有多个输出通道的感觉</p></blockquote><p>然后，在每个查询、键和值的投影版本上，我们并行执行 Scaled Dot-ProductAttention，产生 dv 维输出值。</p><p>这些被连接cat起来并再次投影，产生最终值</p><p>Multi-HeadAttention允许模型共同关注来自不同位置的不同表示子空间的信息</p><p>对于单个注意力头，平均化会抑制这一点</p><figure><img src="multi-head.png" alt="截屏2022-05-03 21.06.37" /><figcaption aria-hidden="true">截屏2022-05-03 21.06.37</figcaption></figure><ul><li><p>Q 矩阵从[m,dmodel] 降维到[m , dk] 那么<spanclass="math inline">\(W_i^Q \in \mathbb{R}^{d_{model}\timesd_k}\)</span></p></li><li><p>K 矩阵从[n,dmodel] 降维到[n , dk] 那么<spanclass="math inline">\(W_i^K \in \mathbb{R}^{d_{model}\timesd_k}\)</span></p></li><li><p>V 矩阵从[n,dmodel] 降维到[n , dv] 那么<spanclass="math inline">\(W_i^V \in \mathbb{R}^{d_{model}\timesd_v}\)</span></p></li></ul><p>在这项工作中，我们使用 h = 8 个并行注意力层或头</p><p>对于其中的每一个，我们使用 dk = dv = dmodel/h = 64</p><p>由于每个头的维度减少，总计算成本类似于具有全维度的单头注意力</p><h4 id="applications-of-attention-in-our-model">3.2.3 Applications ofAttention in our Model</h4><p>Transformer 以三种不同的方式使用多头注意力：</p><ul><li>在“编码器-解码器注意力”层中，query来自前一个解码器层，记忆key和value来自编码器的输出。这允许解码器中的每个位置参与输入序列中的所有位置。这模仿了序列到序列模型中典型的编码器-解码器注意机制</li><li>编码器包含自注意力层在自注意力层中，所有的键、值和查询都来自同一个地方，在这种情况下，是编码器中前一层的输出。编码器中的每个位置都可以关注编码器上一层中的所有位置。</li><li>类似地，解码器中的自注意力层允许解码器中的每个位置关注解码器中直到并包括该位置的所有位置。我们需要防止解码器中的信息向左流动，以保持自回归特性。我们通过屏蔽掉（设置为 -∞）softmax输入中与非法连接相对应的所有值来实现缩放点积注意力的内部</li></ul><h2 id="position-wise-feed-forward-networks">3.3Position-wiseFeed-Forward Networks</h2><p>除了注意力子层之外，我们的编码器和解码器中的每一层都包含一个完全连接的前馈网络，该网络分别且相同地应用于每个位置。这包括两个线性变换，中间有一个 ReLU 激活。 <span class="math display">\[FFN(x) = max(0,xW_1 + b_1 )W_2 + b_2\]</span></p><blockquote><p>输入层 - 隐藏层 - 输出层</p><p>输入( n , dmodel = 512 )</p><p>隐藏层( n , dmodel*4 = 2048)</p><p>输出层（n ， dmodel = 512）</p></blockquote><p>虽然线性变换在不同位置上是相同的，但它们在层与层之间使用不同的参数。另</p><p>一种描述方式是内核大小为 1 的两个卷积</p><p>输入和输出的维度为 dmodel = 512，内层的维度为 dff = 2048</p><h2 id="embeddings-and-softmax">3.4 Embeddings and Softmax</h2><p>与其他序列转导模型类似，我们<strong>使用learnedembedding将输入标记和输出标记转换为维度 dmodel 的向量</strong></p><p>我们还使用通常的学习线性变换和 softmax函数将解码器输出转换为预测的下一个token概率</p><p>在我们的模型中，我们在两个embedding和 pre-softmax线性变换之间共享相同的权重矩阵</p><p>在embedding中，我们将这些权重乘以 <spanclass="math inline">\(\sqrt{d_{model}}\)</span></p><h2 id="positional-encoding">3.5 Positional Encoding</h2><p>由于我们的模型不包含递归和卷积，为了让模型利用序列的顺序，我们必须注入一些关于标记在序列中的相对或绝对位置的信息</p><p>为此，我们在输入嵌入编码器和解码器堆栈的底部中添加“位置编码”</p><p>位置编码与嵌入具有相同的维度 dmodel，因此可以将两者相加</p><p>位置编码有很多选择，学习的和固定的</p><p>在这项工作中，我们使用不同频率的正弦和余弦函数： <spanclass="math display">\[PE(pos,2i) = sin(pos/1000^{2i/d_{model}})\]</span></p><p><span class="math display">\[PE(pos,2i+1) = cos(pos/1000^{2i/d_{model}})\]</span></p><ul><li>pos 是位置</li><li>i 是维度</li></ul><p>也就是说，位置编码的每个维度对应一个正弦曲线。</p><p>波长形成从 2π 到 10000 · 2π 的几何级数</p><p>我们选择这个函数是因为我们假设它可以让模型轻松学习通过相对位置来参与，因为对于任何固定的偏移量k</p><p><span class="math inline">\(PE_{pos+k}\)</span>可以表示为 <spanclass="math inline">\(PE_{pos}\)</span> 的线性函数</p><p>我们还尝试使用学习的位置嵌入 , 发现这两个版本产生了几乎相同的结果</p><p>我们选择了正弦版本，因为它可以让模型推断出比训练期间遇到的序列长度更长的序列长度</p>]]></content>
     
@@ -325,12 +325,12 @@ src=&quot;https://pic4.zhimg.com/v2-8e9936fdcfd4e8371720b9834f8f97d7_r.jpg&quot;
     
     
     
-    <category term="论文笔记" scheme="http://example.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    <category term="论文笔记" scheme="http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="深度学习" scheme="http://example.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    <category term="深度学习" scheme="http://www.larryai.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-    <category term="Transformer" scheme="http://example.com/tags/Transformer/"/>
+    <category term="Transformer" scheme="http://www.larryai.com/tags/Transformer/"/>
     
   </entry>
   
