@@ -2,9 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.larryai.com/2022/05/04/GanGANv2/</loc>
+    
+    <lastmod>2022-05-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.larryai.com/2022/05/04/ChipGAN/</loc>
+    
+    <lastmod>2022-05-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.larryai.com/2022/05/04/Image%20Style%20Transfer/</loc>
+    
+    <lastmod>2022-05-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.larryai.com/2022/05/04/transformer/</loc>
     
-    <lastmod>2022-05-04</lastmod>
+    <lastmod>2022-05-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.larryai.com/2022/05/06/ViT/</loc>
+    
+    <lastmod>2022-05-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.larryai.com/2022/05/06/python%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2022-05-06</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -47,15 +92,6 @@
   </url>
   
   <url>
-    <loc>http://www.larryai.com/2022/05/04/GanGANv2/</loc>
-    
-    <lastmod>2022-05-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://www.larryai.com/2022/05/04/MGUIT/</loc>
     
     <lastmod>2022-05-04</lastmod>
@@ -65,25 +101,7 @@
   </url>
   
   <url>
-    <loc>http://www.larryai.com/2022/05/04/ChipGAN/</loc>
-    
-    <lastmod>2022-05-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://www.larryai.com/2022/05/04/PLST-SR/</loc>
-    
-    <lastmod>2022-05-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.larryai.com/2022/05/04/Image%20Style%20Transfer/</loc>
     
     <lastmod>2022-05-04</lastmod>
     
@@ -130,7 +148,7 @@
 
   <url>
     <loc>http://www.larryai.com/</loc>
-    <lastmod>2022-05-04</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -138,56 +156,63 @@
   
   <url>
     <loc>http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/</loc>
-    <lastmod>2022-05-04</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.larryai.com/tags/%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90/</loc>
-    <lastmod>2022-05-04</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.larryai.com/tags/GAN/</loc>
-    <lastmod>2022-05-04</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.larryai.com/tags/cs-CV/</loc>
-    <lastmod>2022-05-04</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.larryai.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2022-05-04</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.larryai.com/tags/%E8%B6%85%E5%88%86%E9%87%8D%E5%BB%BA/</loc>
-    <lastmod>2022-05-04</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.larryai.com/tags/Transformer/</loc>
-    <lastmod>2022-05-04</lastmod>
+    <lastmod>2022-05-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.larryai.com/tags/Python/</loc>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.larryai.com/tags/C/</loc>
-    <lastmod>2022-05-04</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -196,14 +221,28 @@
   
   <url>
     <loc>http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2022-05-04</lastmod>
+    <lastmod>2022-05-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.larryai.com/categories/%E4%BB%A3%E7%A0%81%E5%A4%8D%E7%8E%B0/</loc>
+    <lastmod>2022-05-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.larryai.com/categories/%E5%87%BD%E6%95%B0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.larryai.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2022-05-04</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
