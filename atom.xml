@@ -6,7 +6,7 @@
   <link href="http://www.larryai.com/atom.xml" rel="self"/>
   
   <link href="http://www.larryai.com/"/>
-  <updated>2022-05-06T07:59:45.838Z</updated>
+  <updated>2022-05-06T11:32:16.665Z</updated>
   <id>http://www.larryai.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Pycharm快捷键</title>
+    <link href="http://www.larryai.com/2022/05/06/Pycharm%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    <id>http://www.larryai.com/2022/05/06/Pycharm%E5%BF%AB%E6%8D%B7%E9%94%AE/</id>
+    <published>2022-05-06T10:54:14.000Z</published>
+    <updated>2022-05-06T11:32:16.665Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="pycharm-for-mac">Pycharm for Mac</h1><h4 id="l-使代码遵守pep8规范自动整齐代码">⌘ + ⌥ + L使代码遵守pep8规范（自动整齐代码）</h4><h4 id="b-查看申明-查看源代码">⌘ + B 查看申明 / 查看源代码</h4><h4 id="w-关闭当前文件标签">⌘ + W 关闭当前文件标签</h4><h4 id="f-查找">⌘ + F 查找</h4><h4 id="r-替换">⌘ + R 替换</h4><h4 id="k-更新到vcs">⌘ + K 更新到VCS</h4><h4 id="d-复制当前一整行">⌘ + D 复制当前一整行</h4><h4 id="x-剪贴当前一整行">⌘ + X 剪贴当前一整行</h4><h4 id="v-粘贴缓存历史粘贴板全部内容">⌘ + ⇧ + V粘贴缓存（历史粘贴板全部内容）</h4><h4 id="o-查找类名">⌘ + O 查找类名</h4><h4 id="a-查找动作">⌘ + ⇧ + A 查找动作</h4><h4 id="p-参数提示">⌘ + P 参数提示</h4><h4 id="折叠代码">⌘ + - 折叠代码</h4><h4 id="展开代码">⌘ + = 展开代码</h4><h4 id="tab-切换文件窗口">⌃ + Tab 切换文件窗口</h4><h4 id="r-运行">⌃ + R 运行</h4><h4 id="r-换文件运行">⌃ + ⌥ + R 换文件运行</h4><h4 id="d-启动调试">⌃ + D 启动调试</h4><h4 id="h-调用层次结构">⌃ + ⌥ + H 调用层次结构</h4><h4 id="f6-重命名">⇧ + F6 重命名</h4><h4 id="回车-下一行">⇧ + 回车 下一行</h4><h4 id="选择代码开始处-选择代码结束处">⌘ + ⇧ + ⌥ + [ 选择代码开始处]选择代码结束处</h4>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;pycharm-for-mac&quot;&gt;Pycharm for Mac&lt;/h1&gt;
+&lt;h4 id=&quot;l-使代码遵守pep8规范自动整齐代码&quot;&gt;⌘ + ⌥ + L
+使代码遵守pep8规范（自动整齐代码）&lt;/h4&gt;
+&lt;h4 id=&quot;b-查看申明-查看源代码&quot;&gt;⌘ + B 查看</summary>
+      
+    
+    
+    
+    <category term="高效工具" scheme="http://www.larryai.com/categories/%E9%AB%98%E6%95%88%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="快捷键" scheme="http://www.larryai.com/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    
+    <category term="Pycharm" scheme="http://www.larryai.com/tags/Pycharm/"/>
+    
+  </entry>
   
   <entry>
     <title>ViT</title>
@@ -50,9 +79,9 @@
     <link href="http://www.larryai.com/2022/05/06/python%E7%AC%94%E8%AE%B0/"/>
     <id>http://www.larryai.com/2022/05/06/python%E7%AC%94%E8%AE%B0/</id>
     <published>2022-05-06T07:54:55.000Z</published>
-    <updated>2022-05-06T07:58:05.545Z</updated>
+    <updated>2022-05-06T11:29:25.903Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="rearrange函数">Rearrange函数</h1><h2 id="作用">作用</h2><p><img src="1.png" /></p><p>在<strong>Patch Embedding</strong>中使用这个函数进行处理</p><p>例如输入图片大小为224x224，将图片分为固定大小的patch，patch大小为16x16</p><p>则每张图像会生成224x224/16x16=196个patches</p><ul><li>即输入序列长度为patch_num = 196</li><li>每个patch维度 = patchSize x patchSize x chanels=16x16x3 = 768</li></ul><blockquote><p>相当于将[B , C , H , W ]的图片变成 [ B , PatchNum , dimension ]</p><p>其中 PathNum = <span class="math inline">\(\frac{H \times W}{p \timesp}\)</span> , dimension = <span class="math inline">\(p \times p \timesC\)</span></p></blockquote><h2 id="具体实现">具体实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> einops.layers.torch <span class="keyword">import</span> Rearrange</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">patch_size = <span class="number">16</span></span><br><span class="line">img = torch.ones(<span class="number">1</span>, <span class="number">3</span>, <span class="number">224</span>, <span class="number">224</span>)</span><br><span class="line"></span><br><span class="line">fun = Rearrange(<span class="string">&#x27;b c (h p1) (w p2) -&gt; b (h w) (p1 p2 c)&#x27;</span>, p1=patch_size, p2=patch_size)</span><br><span class="line"></span><br><span class="line">out = fun(img)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(img.shape)  <span class="comment"># torch.Size([1, 3, 224, 224])</span></span><br><span class="line"><span class="built_in">print</span>(out.shape)  <span class="comment"># torch.Size([1, 196, 768])</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><h1 id="chunks函数">chunks函数</h1><p>该函数在Transformer的Attention模块将输入投影后给QKV时用到</p><h2 id="作用-1">作用</h2><blockquote><p>若对最后一个维度进行chunks操作</p><p>[B , C , N , D*3] -&gt;[B ,C , N ,D] , [B ,C , N ,D] ,[B ,C , N,D]</p></blockquote><h2 id="具体实现-1">具体实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="built_in">input</span> = torch.ones(<span class="number">1</span>, <span class="number">3</span>, <span class="number">224</span> * <span class="number">3</span>)</span><br><span class="line">output = <span class="built_in">input</span>.chunk(<span class="number">3</span>, dim=-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">input</span>.shape)  <span class="comment"># torch.Size([1, 3, 672])</span></span><br><span class="line"><span class="built_in">print</span>(output[<span class="number">0</span>].shape)  <span class="comment"># torch.Size([1, 3, 224])</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="rearrange函数">Rearrange函数</h1><h2 id="作用">作用</h2><p><img src="1.png" /></p><p>在<strong>Patch Embedding</strong>中使用这个函数进行处理</p><p>例如输入图片大小为224x224，将图片分为固定大小的patch，patch大小为16x16</p><p>则每张图像会生成224x224/16x16=196个patches</p><ul><li>即输入序列长度为patch_num = 196</li><li>每个patch维度 = patchSize x patchSize x chanels=16x16x3 = 768</li></ul><blockquote><p>相当于将[B , C , H , W ]的图片变成 [ B , PatchNum , dimension ]</p><p>其中 PathNum = <span class="math inline">\(\frac{H \times W}{p \timesp}\)</span> , dimension = <span class="math inline">\(p \times p \timesC\)</span></p></blockquote><h2 id="具体实现">具体实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> einops.layers.torch <span class="keyword">import</span> Rearrange</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">patch_size = <span class="number">16</span></span><br><span class="line">img = torch.ones(<span class="number">1</span>, <span class="number">3</span>, <span class="number">224</span>, <span class="number">224</span>)</span><br><span class="line"></span><br><span class="line">fun = Rearrange(<span class="string">&#x27;b c (h p1) (w p2) -&gt; b (h w) (p1 p2 c)&#x27;</span>, p1=patch_size, p2=patch_size)</span><br><span class="line"></span><br><span class="line">out = fun(img)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(img.shape)  <span class="comment"># torch.Size([1, 3, 224, 224])</span></span><br><span class="line"><span class="built_in">print</span>(out.shape)  <span class="comment"># torch.Size([1, 196, 768])</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><h1 id="chunks函数">chunks函数</h1><p>该函数在Transformer的Attention模块将输入投影后给QKV时用到</p><h2 id="作用-1">作用</h2><blockquote><p>若对最后一个维度进行chunks操作</p><p>[B , C , N , D*3] -&gt;[B ,C , N ,D] , [B ,C , N ,D] ,[B ,C , N,D]</p></blockquote><h2 id="具体实现-1">具体实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="built_in">input</span> = torch.ones(<span class="number">1</span>, <span class="number">3</span>, <span class="number">224</span> * <span class="number">3</span>)</span><br><span class="line">output = <span class="built_in">input</span>.chunk(<span class="number">3</span>, dim=-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">input</span>.shape)  <span class="comment"># torch.Size([1, 3, 672])</span></span><br><span class="line"><span class="built_in">print</span>(output[<span class="number">0</span>].shape)  <span class="comment"># torch.Size([1, 3, 224])</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><h1 id="adaptiveavgpool2d函数">AdaptiveAvgPool2d()函数</h1><h2 id="作用-2">作用</h2><blockquote><p>AdaptivePooling，自适应池化层</p><p>函数通过输入原始尺寸和目标尺寸，自适应地计算核的大小和每次移动的步长。</p><p>如告诉函数原来的矩阵是32x32的尺寸，我要得到18x18的尺寸，函数就会自己计算出核多大、该怎么运动。</p></blockquote><h2 id="具体实现-2">具体实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="built_in">input</span> = torch.ones(<span class="number">1</span>, <span class="number">3</span>, <span class="number">256</span>, <span class="number">256</span>)</span><br><span class="line">autoPool = nn.AdaptiveAvgPool2d(output_size=(<span class="number">18</span>, <span class="number">18</span>))</span><br><span class="line">output = autoPool(<span class="built_in">input</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;input.shape&#x27;</span>, <span class="built_in">input</span>.shape) <span class="comment"># [1, 3, 256, 256]</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;output.shape&#x27;</span>, output.shape) <span class="comment"># [1, 3, 18, 18]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
     
     
       
@@ -196,13 +225,13 @@ end-to-end）生成对抗性网络体</summary>
     <category term="论文笔记" scheme="http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="风格迁移" scheme="http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
-    
     <category term="图像生成" scheme="http://www.larryai.com/tags/%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90/"/>
     
     <category term="GAN" scheme="http://www.larryai.com/tags/GAN/"/>
     
     <category term="cs.CV" scheme="http://www.larryai.com/tags/cs-CV/"/>
+    
+    <category term="风格迁移" scheme="http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
     
   </entry>
   
@@ -229,13 +258,13 @@ end-to-end）生成对抗性网络体</summary>
     <category term="论文笔记" scheme="http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="风格迁移" scheme="http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
-    
     <category term="GAN" scheme="http://www.larryai.com/tags/GAN/"/>
     
     <category term="cs.CV" scheme="http://www.larryai.com/tags/cs-CV/"/>
     
     <category term="深度学习" scheme="http://www.larryai.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="风格迁移" scheme="http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
     
   </entry>
   
@@ -319,11 +348,11 @@ src=&quot;https://pic4.zhimg.com/v2-8e9936fdcfd4e8371720b9834f8f97d7_r.jpg&quot;
     <category term="论文笔记" scheme="http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="风格迁移" scheme="http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
-    
     <category term="cs.CV" scheme="http://www.larryai.com/tags/cs-CV/"/>
     
     <category term="深度学习" scheme="http://www.larryai.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="风格迁移" scheme="http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
     
     <category term="超分重建" scheme="http://www.larryai.com/tags/%E8%B6%85%E5%88%86%E9%87%8D%E5%BB%BA/"/>
     
@@ -353,11 +382,11 @@ src=&quot;https://pic4.zhimg.com/v2-8e9936fdcfd4e8371720b9834f8f97d7_r.jpg&quot;
     <category term="论文笔记" scheme="http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="风格迁移" scheme="http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
-    
     <category term="cs.CV" scheme="http://www.larryai.com/tags/cs-CV/"/>
     
     <category term="深度学习" scheme="http://www.larryai.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="风格迁移" scheme="http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/"/>
     
   </entry>
   
