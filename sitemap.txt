@@ -17,15 +17,15 @@ http://www.larryai.com/2022/05/04/%E7%BA%BF%E6%80%A7%E9%93%BE%E8%A1%A8/
 http://www.larryai.com/2022/05/04/%E9%A1%BA%E5%BA%8F%E8%A1%A8/
 http://www.larryai.com/tags/index.html
 http://www.larryai.com/
-http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/
 http://www.larryai.com/tags/%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90/
 http://www.larryai.com/tags/GAN/
 http://www.larryai.com/tags/cs-CV/
 http://www.larryai.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/
+http://www.larryai.com/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/
 http://www.larryai.com/tags/%E8%B6%85%E5%88%86%E9%87%8D%E5%BB%BA/
-http://www.larryai.com/tags/Transformer/
 http://www.larryai.com/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/
 http://www.larryai.com/tags/Pycharm/
+http://www.larryai.com/tags/Transformer/
 http://www.larryai.com/tags/Python/
 http://www.larryai.com/tags/C/
 http://www.larryai.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/
