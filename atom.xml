@@ -6,7 +6,7 @@
   <link href="http://www.larryai.com/atom.xml" rel="self"/>
   
   <link href="http://www.larryai.com/"/>
-  <updated>2022-05-14T08:38:05.537Z</updated>
+  <updated>2022-05-14T08:49:25.150Z</updated>
   <id>http://www.larryai.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://www.larryai.com/2022/05/14/Linux%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/"/>
     <id>http://www.larryai.com/2022/05/14/Linux%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/</id>
     <published>2022-05-14T07:32:55.000Z</published>
-    <updated>2022-05-14T08:38:05.537Z</updated>
+    <updated>2022-05-14T08:49:25.150Z</updated>
     
     <content type="html"><![CDATA[<h1 id="基本概念">基本概念</h1><h2 id="标准文件">标准文件</h2><ul><li>stdin 标准输入</li><li>stdout 标准输出</li><li>stderror 标准错误</li></ul><h1 id="基本命令">基本命令</h1><h2 id="cat命令">Cat命令</h2><p>拼接文件</p><blockquote><p>cat命令的功能是拼接文件 ， cat并不适合查看文件</p><p>因为当cat命令默认重定向到标准输出stdout ，所以能看到显示屏上看到文件</p></blockquote><p>当文件内容较多时，cat命令显示文件就会快速滚屏，且没有滚动条</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> 1.txt 2.txt &gt; 3.txt</span><br></pre></td></tr></table></figure><h2 id="more命令">more命令</h2><p>查看文件</p><blockquote><p>但是只能向后翻页</p></blockquote><h2 id="lesszless命令">less/zless命令</h2><p>查看文件内容</p><h2 id="cd命令">cd命令</h2><p>前往目录/文件</p><h3 id="绝对路径">绝对路径</h3><p>路径以‘/’开始</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/username</span><br></pre></td></tr></table></figure><h3 id="相对路径">相对路径</h3><p>路径以‘..’开始</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/linux</span><br></pre></td></tr></table></figure><h2 id="pwd命令">pwd命令</h2><p>以绝对路径的形式显示当前位置</p><h2 id="ls命令">ls命令</h2><p>以列表的形式显示当前目录的内容</p>]]></content>
     
