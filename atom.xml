@@ -6,7 +6,7 @@
   <link href="http://www.larryai.com/atom.xml" rel="self"/>
   
   <link href="http://www.larryai.com/"/>
-  <updated>2022-05-14T09:02:38.366Z</updated>
+  <updated>2022-05-16T01:37:35.866Z</updated>
   <id>http://www.larryai.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OPENCV-视频与图像的转换</title>
+    <link href="http://www.larryai.com/2022/05/16/video2pic/"/>
+    <id>http://www.larryai.com/2022/05/16/video2pic/</id>
+    <published>2022-05-16T01:27:34.000Z</published>
+    <updated>2022-05-16T01:37:35.866Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="video2pics">video2pics</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">video_path = <span class="literal">None</span>  <span class="comment"># 视频来源路径</span></span><br><span class="line">save_path = <span class="literal">None</span>  <span class="comment"># 图片保存路径</span></span><br><span class="line">cap = cv.VideoCapture(video_path)  <span class="comment"># 创建视频捕捉对象</span></span><br><span class="line">fps = <span class="built_in">int</span>(cap.get(cv.CAP_PROP_FPS))  <span class="comment"># 获取帧率</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;FPS:&#123;:.2f&#125;&#x27;</span>.<span class="built_in">format</span>(fps))</span><br><span class="line"><span class="comment"># 获取视频总长</span></span><br><span class="line">rate = cap.get(<span class="number">5</span>)</span><br><span class="line">frame_num = cap.get(<span class="number">7</span>)</span><br><span class="line">duration = frame_num / rate</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;video total time:&#123;:.2f&#125;s&#x27;</span>.<span class="built_in">format</span>(duration))</span><br><span class="line"></span><br><span class="line">cnt = <span class="number">0</span></span><br><span class="line">num = <span class="number">0</span></span><br><span class="line">interval = <span class="number">1</span>  </span><br><span class="line">process_num = frame_num // interval</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;process frame:&#123;:.0f&#125;&#x27;</span>.<span class="built_in">format</span>(process_num))</span><br><span class="line"></span><br><span class="line">t0 = time.time()</span><br><span class="line"><span class="keyword">while</span> cap.isOpened():</span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    <span class="keyword">if</span> ret:</span><br><span class="line">        cnt += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> cnt % interval == <span class="number">0</span>:</span><br><span class="line">            num += <span class="number">1</span></span><br><span class="line">            <span class="comment"># frame = cv.resize(frame, (width, height))</span></span><br><span class="line">            cv.imwrite(save_path + <span class="string">&quot;/%d.jpg&quot;</span> % num, frame)</span><br><span class="line">            remain_frame = process_num - num</span><br><span class="line">            t1 = time.time() - t0</span><br><span class="line">            t0 = time.time()</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Processing %d.jpg, remain frame: %d, remain time: %.2fs&quot;</span> % (num, remain_frame, remain_frame * t1))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="pics2video">pics2video</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line">fps = <span class="number">30</span>  <span class="comment"># 帧率</span></span><br><span class="line">photo_size = (<span class="number">828</span>, <span class="number">456</span>)  <span class="comment"># 尺寸大小</span></span><br><span class="line">fourcc = cv2.VideoWriter_fourcc(*<span class="string">&#x27;X264&#x27;</span>)  <span class="comment"># 格式</span></span><br><span class="line">video = <span class="string">&#x27;xxx.mov&#x27;</span>  <span class="comment"># 保存的视频路径</span></span><br><span class="line">videoWriter = cv2.VideoWriter(video, fourcc, fps, photo_size)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">200</span>):</span><br><span class="line">    image = <span class="string">&quot;out/gl&quot;</span> + <span class="built_in">str</span>(i) + <span class="string">&quot;.jpg&quot;</span>  <span class="comment"># 图片路径</span></span><br><span class="line">    frame = cv2.imread(image)</span><br><span class="line">    videoWriter.write(frame)</span><br><span class="line">videoWriter.release()</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;video2pics&quot;&gt;video2pics&lt;/h2&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+      
+    
+    
+    
+    
+    <category term="OPENCV" scheme="http://www.larryai.com/tags/OPENCV/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux基本指令</title>
