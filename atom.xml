@@ -56,9 +56,9 @@
     <link href="http://www.larryai.com/2022/05/16/%E5%9B%BE%E5%83%8F%E7%9A%84%E4%B8%89%E7%A7%8D%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/"/>
     <id>http://www.larryai.com/2022/05/16/%E5%9B%BE%E5%83%8F%E7%9A%84%E4%B8%89%E7%A7%8D%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/</id>
     <published>2022-05-16T01:56:13.000Z</published>
-    <updated>2022-05-16T03:23:27.771Z</updated>
+    <updated>2022-05-16T09:57:26.313Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="图像的三种数据格式">图像的三种数据格式</h1><ul><li>numpy</li><li>tensor</li><li>PIL.Image</li></ul><h1 id="图像格式的转换基础转换">图像格式的转换——基础转换</h1><h2 id="numpy格式转换">numpy格式转换</h2><h3 id="numpy转tensor">numpy转tensor</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="图像的三种数据格式">图像的三种数据格式</h1><ul><li>numpy</li><li>tensor</li><li>PIL.Image</li></ul><h1 id="图像格式的转换基础转换">图像格式的转换——基础转换</h1><h2 id="numpy格式转换">numpy格式转换</h2><h3 id="numpy转tensor">numpy转tensor</h3>]]></content>
     
     
       
@@ -75,6 +75,12 @@
     
     
     
+    
+    <category term="Python" scheme="http://www.larryai.com/tags/Python/"/>
+    
+    <category term="Pytorch" scheme="http://www.larryai.com/tags/Pytorch/"/>
+    
+    <category term="Numpy" scheme="http://www.larryai.com/tags/Numpy/"/>
     
   </entry>
   
