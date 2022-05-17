@@ -6,7 +6,7 @@
   <link href="http://www.larryai.com/atom.xml" rel="self"/>
   
   <link href="http://www.larryai.com/"/>
-  <updated>2022-05-16T10:04:53.546Z</updated>
+  <updated>2022-05-17T09:17:26.596Z</updated>
   <id>http://www.larryai.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux基本指令2</title>
+    <link href="http://www.larryai.com/2022/05/17/linux2/"/>
+    <id>http://www.larryai.com/2022/05/17/linux2/</id>
+    <published>2022-05-17T07:51:26.000Z</published>
+    <updated>2022-05-17T09:17:26.596Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="grep指令">grep指令</h2><p>根据一个模式进行输出</p><p><code>grep 表达式 目标文件</code></p><p>案例</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -l | grep <span class="string">&quot;^-r.x&quot;</span></span><br></pre></td></tr></table></figure><ul><li><p><code>ls</code> <code>grep</code>两个命令</p></li><li><p><code>grep</code>没有文件参数</p></li><li><p><code>｜</code> 管道（<strong>将前面的输出作为后面的输入</strong>）</p></li></ul><p>grep中的模式用<strong>正则表达式</strong>来表示</p><ul><li><code>^</code> 表示行首</li><li><code>$</code> 表示行尾</li><li><code>.</code> 表示任一字符<ul><li>与通配符 <code>?</code>要区分</li></ul></li><li>-,r,x 就是字符本身</li></ul><h2 id="xargs命令">xargs命令</h2><ul><li><p>xargs命令单独使用可以吧接受的数据一行输出</p></li><li><p>xargs不能加文件名 使用重定向读取文件<code>xargs &lt; file</code></p></li><li><p><code>-n</code>指定每行最大参数量 每行n个参数默认分割符号为<code>空格</code></p></li><li><p><code>-d</code> 自定义分隔符(split())</p></li></ul><p><img src="xargs.png" /></p><h2 id="cut命令">cut命令</h2><p>从文件中的每一行选择指定的部分打印到standard output上</p><p>常用选项</p><p><img src="cut.png" /></p><ul><li><p><code>-b</code> 以字节分割</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cut</span> -b 5 file <span class="comment">#选取每行第五个字节</span></span><br><span class="line"><span class="built_in">cut</span> -b 5-9 file <span class="comment">#选取每行第5-9个字节</span></span><br><span class="line"><span class="built_in">cut</span> -b -5,10,14- file <span class="comment">#选择每行 从开头到第5字节 第10字节 从第14字节到结尾的内容</span></span><br></pre></td></tr></table></figure></li><li><p><code>-c</code> 以字符分割</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cut</span> -b -5 file <span class="comment">#选取每行开头的五个字节</span></span><br><span class="line"><span class="built_in">cut</span> -c -5 file <span class="comment">#选取每行开头的五个字符</span></span><br><span class="line">cur -nb -5 file <span class="comment">#不对多字节字符进行分隔</span></span><br><span class="line"><span class="comment"># urf-8 每行汉子3个字节</span></span><br></pre></td></tr></table></figure></li><li><p><code>-d</code>自定义分隔符 <code>-f</code>选取的区域</p></li></ul><h2 id="wc命令">wc命令</h2><p>统计每一行的xx数量</p><p>选项</p><ul><li><code>-c</code> 按照字节统计</li><li><code>-m</code>按照字符统计</li><li><code>-l</code> 按照行统计</li><li><code>-L</code> 最大显示宽度</li><li><code>-w</code>按照词统计</li><li><code>--help</code> 显示帮助</li><li><code>--version</code> 输出版本信息</li></ul><h2 id="sort命令">sort命令</h2><p>对行进行排序</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sort</span> filename <span class="comment">#正排序后的文档</span></span><br><span class="line"><span class="built_in">sort</span> -r filename <span class="comment">#逆排序后的文档</span></span><br></pre></td></tr></table></figure><h2 id="cmp命令">cmp命令</h2><p>将两个文件逐个字节进行对比</p><ul><li>发现第一个不同的地方就结束并输出</li><li>适合比较两个文件是否完全相同</li></ul><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmp file1 file2</span><br></pre></td></tr></table></figure><h2 id="comm命令">comm命令</h2><p>对两个排序后的文件进行逐行比较</p><ul><li>输出有三列<ul><li>第一列：file1所独有的</li><li>第二列：file2所独有的</li><li>第三列：file1 和 file2 共有的</li></ul></li><li>使用 <code>-n</code> 显示第n列</li></ul><h2 id="diff命令">diff命令</h2><p>对两个文件进行逐行比较</p><figure><img src="diff.png" alt="diff" /><figcaption aria-hidden="true">diff</figcaption></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;grep指令&quot;&gt;grep指令&lt;/h2&gt;
+&lt;p&gt;根据一个模式进行输出&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;grep 表达式 目标文件&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;案例&lt;/p&gt;
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=</summary>
+      
+    
+    
+    
+    
+    <category term="Linux" scheme="http://www.larryai.com/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>SEAN:Image Synthesis With Semantic Region-Adaptive Normalization</title>
