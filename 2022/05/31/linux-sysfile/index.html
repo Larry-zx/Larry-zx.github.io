@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Linux文件系统操作与磁盘管理 | 扁同学不发言的个人博客</title><meta name="keywords" content="Linux"><meta name="author" content="扁同学不发言"><meta name="copyright" content="扁同学不发言"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="df命令 查看磁盘的容量 du命令 查看目录的容量 1234# 默认同样以 块 的大小展示du &lt;文件&gt;或者&lt;目录&gt;# 加上&#96;-h&#96;参数，以更易读的方式展示du -h &lt;文件&gt;或者&lt;目录&gt; -d参数指定查看目录的深度 1234# 只查看1级目录的信息du -h -d 0  ~   #查看当前目录# 查看2级du -h -d 1  ~   #查看当前目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux文件系统操作与磁盘管理">
+<meta property="og:url" content="http://www.larryai.com/2022/05/31/linux-sysfile/index.html">
+<meta property="og:site_name" content="扁同学不发言的个人博客">
+<meta property="og:description" content="df命令 查看磁盘的容量 du命令 查看目录的容量 1234# 默认同样以 块 的大小展示du &lt;文件&gt;或者&lt;目录&gt;# 加上&#96;-h&#96;参数，以更易读的方式展示du -h &lt;文件&gt;或者&lt;目录&gt; -d参数指定查看目录的深度 1234# 只查看1级目录的信息du -h -d 0  ~   #查看当前目录# 查看2级du -h -d 1  ~   #查看当前目">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.larryai.com/img/%E8%83%8C%E6%99%AF/a14.jpg">
+<meta property="article:published_time" content="2022-05-31T02:44:56.000Z">
+<meta property="article:modified_time" content="2022-05-31T08:56:34.136Z">
+<meta property="article:author" content="扁同学不发言">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.larryai.com/img/%E8%83%8C%E6%99%AF/a14.jpg"><link rel="shortcut icon" href="/img/bian_logo.png"><link rel="canonical" href="http://www.larryai.com/2022/05/31/linux-sysfile/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux文件系统操作与磁盘管理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-31 16:56:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="扁同学不发言的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E6%96%B0%E4%B8%80.JPG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 专栏</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/picture/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/%E8%83%8C%E6%99%AF/a14.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">扁同学不发言的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 专栏</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/picture/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux文件系统操作与磁盘管理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-31T02:44:56.000Z" title="发表于 2022-05-31 10:44:56">2022-05-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-31T08:56:34.136Z" title="更新于 2022-05-31 16:56:34">2022-05-31</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux文件系统操作与磁盘管理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="df命令">df命令</h2>
+<p>查看磁盘的容量</p>
+<h2 id="du命令">du命令</h2>
+<p>查看目录的容量</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认同样以 块 的大小展示</span></span><br><span class="line"><span class="built_in">du</span> &lt;文件&gt;或者&lt;目录&gt;</span><br><span class="line"><span class="comment"># 加上`-h`参数，以更易读的方式展示</span></span><br><span class="line"><span class="built_in">du</span> -h &lt;文件&gt;或者&lt;目录&gt;</span><br></pre></td></tr></table></figure>
+<p><code>-d</code>参数指定查看目录的深度</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只查看1级目录的信息</span></span><br><span class="line"><span class="built_in">du</span> -h -d 0  ~   <span class="comment">#查看当前目录</span></span><br><span class="line"><span class="comment"># 查看2级</span></span><br><span class="line"><span class="built_in">du</span> -h -d 1  ~   <span class="comment">#查看当前目录及下一级目录</span></span><br></pre></td></tr></table></figure>
+<h2 id="dd命令">dd命令</h2>
+<h3 id="转换和复制文件">转换和复制文件</h3>
+<p><code>dd</code> 命令用于转换和复制文件，不过它的复制不同于
+<code>cp</code>。</p>
+<p>之前提到过关于 Linux 的很重要的一点，<strong>一切即文件</strong></p>
+<p>在 Linux 上，硬件的设备驱动（如硬盘）和特殊设备文件（如
+<code>/dev/zero</code> 和 <code>/dev/random</code>
+）都像普通文件一样，只是在各自的驱动程序中实现了对应的功能</p>
+<p><code>dd</code> 也可以读取文件或写入这些文件。</p>
+<p>这样，<code>dd</code>
+也可以用在备份硬件的引导扇区、获取一定数量的随机数据或者空数据等任务中</p>
+<p><code>dd</code> 程序也可以在复制时处理数据，例如转换字节序、或在
+ASCII 与 EBCDIC 编码间互换。</p>
+<p><code>dd</code> 的命令行语句与其他的 Linux
+程序不同，因为它的命令行选项格式为
+<code>选项=值</code>，而不是更标准的<code>--选项 值</code>或<code>-选项=值</code>。</p>
+<p><code>dd</code>
+默认从标准输入中读取，并写入到标准输出中，但可以用选项
+<code>if</code>（input file，输入文件）和 <code>of</code>（output
+file，输出文件）改变。</p>
+<p>我们先来试试用 <code>dd</code>
+命令从标准输入读入用户的输入到标准输出或者一个文件中：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输出到文件</span></span><br><span class="line"><span class="built_in">dd</span> of=<span class="built_in">test</span> bs=10 count=1 <span class="comment"># 或者 dd if=/dev/stdin of=test bs=10 count=1</span></span><br><span class="line"><span class="comment"># 输出到标准输出</span></span><br><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/dev/stdin of=/dev/stdout bs=10 count=1</span><br><span class="line"><span class="comment"># 注:在打完了这个命令后，继续在终端打字，作为你的输入</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>bs</code>（block size）用于指定块大小（缺省单位为
+Byte，也可为其指定如'K'，'M'，'G'等单位）</p></li>
+<li><p><code>count</code>用于指定块数量</p></li>
+</ul>
+<h4 id="创建虚拟镜像文件">创建虚拟镜像文件</h4>
+<p>从 <code>/dev/zero</code> 设备创建一个容量为 256M 的空文件：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/dev/zero of=virtual.img bs=1M count=256</span><br><span class="line"><span class="built_in">du</span> -h virtual.img</span><br></pre></td></tr></table></figure>
+<p>然后我们要将这个文件格式化（写入文件系统），这里我们要学到一个（准确的说是一组）新的命令来完成这个需求。</p>
+<h4 id="使用-mkfs-命令格式化磁盘我们这里是自己创建的虚拟磁盘镜像">使用
+mkfs 命令格式化磁盘（我们这里是自己创建的虚拟磁盘镜像）</h4>
+<p>你可以在命令行输入 <code>sudo mkfs</code>
+然后按下<code>Tab</code>键，你可以看到很多个以 <code>mkfs</code>
+为前缀的命令</p>
+<p>这些不同的后缀其实就是表示着不同的文件系统，可以用 <code>mkfs</code>
+格式化成的文件系统。</p>
+<p>我们可以简单的使用下面的命令来将我们的虚拟磁盘镜像格式化为<code>ext4</code>文件系统：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkfs.ext4 virtual.img</span><br></pre></td></tr></table></figure>
+<h4 id="使用-mount-命令挂载磁盘到目录树">使用 mount
+命令挂载磁盘到目录树</h4>
+<p>用户在 Linux/UNIX
+的机器上打开一个文件以前，包含该文件的文件系统必须先进行挂载的动作，此时用户要对该文件系统执行
+<code>mount</code> 的指令以进行挂载。</p>
+<p>该指令通常是使用在 USB
+或其他可移除存储设备上，而根目录则需要始终保持挂载的状态。</p>
+<p>又因为 Linux/UNIX
+文件系统可以对应一个文件而不一定要是硬件设备，所以可以挂载一个包含文件系统的文件到目录树。</p>
+<p>Linux/UNIX 命令行的 mount
+指令是告诉操作系统，对应的文件系统已经准备好，可以使用了，而该文件系统会对应到一个特定的点（称为挂载点）。</p>
+<p>挂载好的文件、目录、设备以及特殊文件即可提供用户使用。</p>
+<p>我们先来使用<code>mount</code>来查看下主机已经挂载的文件系统</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mount</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>输出的结果中每一行表示一个设备或虚拟设备,每一行最前面是设备名，然后是
+on 后面是挂载点，type
+后面表示文件系统类型，再后面是挂载选项（比如可以在挂载时设定以只读方式挂载等等）。</p>
+</blockquote>
+<p>那么我们如何挂载真正的磁盘到目录树呢，<code>mount</code>命令的一般格式如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount [options] [<span class="built_in">source</span>] [directory]</span><br></pre></td></tr></table></figure>
+<p>一些常用操作：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount [-o [操作选项]] [-t 文件系统类型] [-w|--rw|--ro] [文件系统源] [挂载点] </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 命令格式 sudo umount 已挂载设备名或者挂载点，如：</span><br><span class="line">$ sudo umount /mnt</span><br><span class="line"></span><br><span class="line">不过遗憾的是，由于我们环境的问题（环境中使用的 Linux 内核在编译时没有添加对 Loop device 的支持），所以你将无法挂载成功：另外关于 loop 设备,你可能会有诸多疑问，那么请看下面来自维基百科/dev/loop的说明：在类 UNIX 系统中，/dev/loop（或称 vnd （vnode disk）、lofi（循环文件接口））是一种伪设备，这种设备使得文件可以如同块设备一般被访问。在使用之前，循环设备必须与现存文件系统上的文件相关联。这种关联将提供给用户一个应用程序接口，接口将允许文件视为块特殊文件（参见设备文件系统）使用。因此，如果文件中包含一个完整的文件系统，那么这个文件就能如同磁盘设备一般被挂载。这种设备文件经常被用于光盘或是磁盘镜像。通过循环挂载来挂载包含文件系统的文件，便使处在这个文件系统中的文件得以被访问。这些文件将出现在挂载点目录。如果挂载目录中本身有文件，这些文件在挂载后将被禁止使用。</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://www.larryai.com">扁同学不发言</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://www.larryai.com/2022/05/31/linux-sysfile/">http://www.larryai.com/2022/05/31/linux-sysfile/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://www.larryai.com" target="_blank">扁同学不发言的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="/img/%E8%83%8C%E6%99%AF/a14.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/31/linux-log/"><img class="prev-cover" src="/img/%E8%83%8C%E6%99%AF/a14.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Linux日志系统管理</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/31/linux-user/"><img class="next-cover" src="/img/%E8%83%8C%E6%99%AF/a14.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux软件包安装和管理</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/14/Linux%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/" title="Linux基本指令1"><img class="cover" src="/2022/05/14/Linux%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/a15.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-14</div><div class="title">Linux基本指令1</div></div></a></div><div><a href="/2022/05/22/linux-sys/" title="Linux系统管理"><img class="cover" src="/2022/05/22/linux-sys/111.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-22</div><div class="title">Linux系统管理</div></div></a></div><div><a href="/2022/05/17/linux2/" title="Linux基本指令2"><img class="cover" src="/2022/05/17/linux2/laks.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-17</div><div class="title">Linux基本指令2</div></div></a></div><div><a href="/2022/05/17/linux3/" title="Linux基本指令3"><img class="cover" src="/2022/05/17/linux3/laks.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-17</div><div class="title">Linux基本指令3</div></div></a></div><div><a href="/2022/05/31/linux-log/" title="Linux日志系统管理"><img class="cover" src="/img/%E8%83%8C%E6%99%AF/a14.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-31</div><div class="title">Linux日志系统管理</div></div></a></div><div><a href="/2022/05/31/linux-user/" title="Linux软件包安装和管理"><img class="cover" src="/img/%E8%83%8C%E6%99%AF/a14.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-31</div><div class="title">Linux软件包安装和管理</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E6%96%B0%E4%B8%80.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">扁同学不发言</div><div class="author-info__description">AIArt@HDU</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Larry-zx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Larry-zx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/larry-19-22-31" target="_blank" title="Zhihu"><i class="fa-brands fa-zhihu"></i></a><a class="social-icon" href="https://mobile.twitter.com/Larry37722397" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a><a class="social-icon" href="https://www.youtube.com/channel/UCzDXYobI-mUP5WgvA37er6A" target="_blank" title="Youtube"><i class="fa-brands fa-youtube"></i></a><a class="social-icon" href="https://www.kaggle.com/larryzxai" target="_blank" title="Kaggle"><i class="fa-brands fa-kaggle"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hi , welcome to my blog 🤔</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#df%E5%91%BD%E4%BB%A4"><span class="toc-text">df命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#du%E5%91%BD%E4%BB%A4"><span class="toc-text">du命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dd%E5%91%BD%E4%BB%A4"><span class="toc-text">dd命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E5%92%8C%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6"><span class="toc-text">转换和复制文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6"><span class="toc-text">创建虚拟镜像文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-mkfs-%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%A3%81%E7%9B%98%E6%88%91%E4%BB%AC%E8%BF%99%E9%87%8C%E6%98%AF%E8%87%AA%E5%B7%B1%E5%88%9B%E5%BB%BA%E7%9A%84%E8%99%9A%E6%8B%9F%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F"><span class="toc-text">使用
+mkfs 命令格式化磁盘（我们这里是自己创建的虚拟磁盘镜像）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-mount-%E5%91%BD%E4%BB%A4%E6%8C%82%E8%BD%BD%E7%A3%81%E7%9B%98%E5%88%B0%E7%9B%AE%E5%BD%95%E6%A0%91"><span class="toc-text">使用 mount
+命令挂载磁盘到目录树</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/05/31/linx-plan/" title="Linux计划任务"><img src="/img/%E8%83%8C%E6%99%AF/a14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux计划任务"/></a><div class="content"><a class="title" href="/2022/05/31/linx-plan/" title="Linux计划任务">Linux计划任务</a><time datetime="2022-05-31T09:23:50.000Z" title="发表于 2022-05-31 17:23:50">2022-05-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/31/linux-log/" title="Linux日志系统管理"><img src="/img/%E8%83%8C%E6%99%AF/a14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux日志系统管理"/></a><div class="content"><a class="title" href="/2022/05/31/linux-log/" title="Linux日志系统管理">Linux日志系统管理</a><time datetime="2022-05-31T08:57:20.000Z" title="发表于 2022-05-31 16:57:20">2022-05-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/31/linux-sysfile/" title="Linux文件系统操作与磁盘管理"><img src="/img/%E8%83%8C%E6%99%AF/a14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux文件系统操作与磁盘管理"/></a><div class="content"><a class="title" href="/2022/05/31/linux-sysfile/" title="Linux文件系统操作与磁盘管理">Linux文件系统操作与磁盘管理</a><time datetime="2022-05-31T02:44:56.000Z" title="发表于 2022-05-31 10:44:56">2022-05-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/31/linux-user/" title="Linux软件包安装和管理"><img src="/img/%E8%83%8C%E6%99%AF/a14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux软件包安装和管理"/></a><div class="content"><a class="title" href="/2022/05/31/linux-user/" title="Linux软件包安装和管理">Linux软件包安装和管理</a><time datetime="2022-05-31T01:53:59.000Z" title="发表于 2022-05-31 09:53:59">2022-05-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/22/linux-sys/" title="Linux系统管理"><img src="/2022/05/22/linux-sys/111.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux系统管理"/></a><div class="content"><a class="title" href="/2022/05/22/linux-sys/" title="Linux系统管理">Linux系统管理</a><time datetime="2022-05-22T05:08:40.000Z" title="发表于 2022-05-22 13:08:40">2022-05-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By 扁同学不发言</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="#">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'H2XPsPqmRrVmO7wLvvlhsgyi-gzGzoHsz',
+      appKey: 'qUDSqSmyX1JHlTwo3fQLXiSU',
+      avatar: 'monsterid',
+      serverURLs: 'https://h2xpspqm.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'babylearnDL/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (false) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
