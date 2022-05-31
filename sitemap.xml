@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.larryai.com/2022/05/17/linux3/</loc>
+    <loc>http://www.larryai.com/2021/05/14/Linux%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/</loc>
     
     <lastmod>2022-05-31</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>http://www.larryai.com/2022/05/17/linux2/</loc>
+    <loc>http://www.larryai.com/2021/05/17/linux2/</loc>
     
     <lastmod>2022-05-31</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>http://www.larryai.com/2022/05/14/Linux%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/</loc>
+    <loc>http://www.larryai.com/2021/05/17/linux3/</loc>
     
     <lastmod>2022-05-31</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>http://www.larryai.com/2022/05/31/linx-plan/</loc>
+    <loc>http://www.larryai.com/2021/05/22/linux-sys/</loc>
     
     <lastmod>2022-05-31</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>http://www.larryai.com/2022/05/31/linux-log/</loc>
+    <loc>http://www.larryai.com/2021/05/31/linux-user/</loc>
     
     <lastmod>2022-05-31</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>http://www.larryai.com/2022/05/31/linux-sysfile/</loc>
+    <loc>http://www.larryai.com/2021/05/31/linux-sysfile/</loc>
     
     <lastmod>2022-05-31</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>http://www.larryai.com/2022/05/31/linux-user/</loc>
+    <loc>http://www.larryai.com/2021/05/31/Linux-tz/</loc>
     
     <lastmod>2022-05-31</lastmod>
     
@@ -65,9 +65,36 @@
   </url>
   
   <url>
-    <loc>http://www.larryai.com/2022/05/22/linux-sys/</loc>
+    <loc>http://www.larryai.com/2021/05/31/linx-plan/</loc>
     
-    <lastmod>2022-05-24</lastmod>
+    <lastmod>2022-05-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.larryai.com/2021/05/31/linux-log/</loc>
+    
+    <lastmod>2022-05-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.larryai.com/2021/05/31/vim%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2022-05-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.larryai.com/2021/05/31/bash%E5%85%A5%E9%97%A8/</loc>
+    
+    <lastmod>2022-05-31</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
