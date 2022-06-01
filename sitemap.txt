@@ -1,10 +1,10 @@
+http://www.larryai.com/2021/05/31/Linux-tz/
 http://www.larryai.com/2021/05/14/Linux%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/
 http://www.larryai.com/2021/05/17/linux2/
 http://www.larryai.com/2021/05/17/linux3/
 http://www.larryai.com/2021/05/22/linux-sys/
 http://www.larryai.com/2021/05/31/linux-user/
 http://www.larryai.com/2021/05/31/linux-sysfile/
-http://www.larryai.com/2021/05/31/Linux-tz/
 http://www.larryai.com/2021/05/31/linx-plan/
 http://www.larryai.com/2021/05/31/linux-log/
 http://www.larryai.com/2021/05/31/vim%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8/
